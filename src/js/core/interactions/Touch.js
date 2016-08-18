@@ -1,4 +1,4 @@
-var TANACH_CORE = (function(exports) {
+var TXP = (function(exports) {
 
     function addHoverListener(obj, callback) {
         obj.on('mouseover', function(info) {
@@ -57,7 +57,7 @@ var TANACH_CORE = (function(exports) {
     }
     return exports;
 
-  }(TANACH_CORE || {
+  }(TXP || {
     Utils: {},
     Shaders: {},
     Interactions: {},

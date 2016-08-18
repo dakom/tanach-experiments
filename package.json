@@ -9,7 +9,7 @@
   "author": "David Komer <david.komer@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "del": "^2.2.1",
+    "del": "^2.2.2",
     "event-stream": "^3.3.4",
     "glslify": "^5.1.0",
     "gulp": "^3.9.1",

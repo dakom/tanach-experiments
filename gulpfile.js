@@ -16,7 +16,7 @@ var inject = require('gulp-inject');
 gulp.task('clean', function() {
     return del([
         'dist',
-        './src/index-dev.html',
+        './src/*-dev.html',
     ]);
 
 });
@@ -28,8 +28,8 @@ gulp.task('dist', function() {
 
 gulp.task('js-dist', function() {
     return es.merge([
-        gulp.src(path.join('./src/js/tanachviewer/', '**/*.js'))
-        .pipe(concat('tanach-viewer.min.js'))
+        gulp.src(path.join('./src/js/modules/image-generator/', '**/*.js'))
+        .pipe(concat('image-generator.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./dist/js')),
         gulp.src(path.join('./src/js/core/', '**/*.js'))
@@ -50,7 +50,7 @@ gulp.task('copy-dist', function() {
 });
 
 gulp.task('html-dist', function() {
-    var target = gulp.src('./src/html/tanach-viewer-template.html');
+    var target = gulp.src('./src/html/image-generator-template.html');
     var sources = gulp.src(['./dist/js/**/*.js', './dist/css/**/*.css'], {
         read: false
     });
@@ -58,7 +58,7 @@ gulp.task('html-dist', function() {
     target.pipe(inject(sources, {
         ignorePath: 'dist',
         addRootSlash: false
-    })).pipe(rename('tanach-viewer.html')).pipe(gulp.dest('./dist'));
+    })).pipe(rename('image-generator.html')).pipe(gulp.dest('./dist'));
 });
 
 
@@ -73,12 +73,12 @@ gulp.task('clean-temp-dist', function() {
 //Build HTML Template for DEV
 gulp.task('clean-html-dev', function() {
     return del([
-        './src/tanach-viewer-dev.html',
+        './src/*-dev.html',
     ]);
 });
 
 gulp.task('make-html-dev', function() {
-    var target = gulp.src('./src/html/tanach-viewer-template.html');
+    var target = gulp.src('./src/html/image-generator-template.html');
     var sources = gulp.src(['./src/js/**/*.js', './src/css/**/*.css'], {
         read: false
     });
@@ -86,7 +86,7 @@ gulp.task('make-html-dev', function() {
     target.pipe(inject(sources, {
         ignorePath: 'src',
         addRootSlash: false
-    })).pipe(rename('tanach-viewer-dev.html')).pipe(gulp.dest('./src'));
+    })).pipe(rename('image-generator-dev.html')).pipe(gulp.dest('./src'));
 });
 
 gulp.task('build-html-dev', function() {

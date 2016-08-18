@@ -1,12 +1,12 @@
-var TANACH_VIEWER = (function(exports) {
+var IMAGE_GENERATOR = (function(exports) {
     exports.TempTest = function() {
-        var bookNames = TANACH_CORE.Books.names;
+        var bookNames = TXP.Books.names;
         var letterCount = 0;
-        var bookMax = 5; //TANACH_CORE.Books.names.length; // 5; //chumash
+        var bookMax = 5; //TXP.Books.names.length; // 5; //chumash
 
         for(var i = 0; i < bookMax; i++) {
             var bookName = bookNames[i];
-            var bookData = TANACH_CORE.Books.GetData(bookName);
+            var bookData = TXP.Books.GetData(bookName);
             for (var p = 0; p < bookData.length; p++) {
                 var pasuk = bookData[p];
 
@@ -25,4 +25,4 @@ var TANACH_VIEWER = (function(exports) {
 
     }
     return exports;
-}(TANACH_VIEWER || {}));
+}(IMAGE_GENERATOR || {}));
