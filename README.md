@@ -4,6 +4,8 @@ Various experiments with Tanach data
 
 * Make UI for stacking settings
 * GPU-powered search and transformations
+* Filters over web video
+* Audio transforms
 
 ## A few notes from previous tests ran...
 
