@@ -80,6 +80,9 @@ var TXP = (function(exports) {
 
 
     function GetFlattened(opts) {
+      if(opts === undefined || opts === null) {
+        opts = {};
+      }
         if (opts.benchMark) {
             opts.startTime = new Date().getTime();
         }
@@ -107,7 +110,7 @@ var TXP = (function(exports) {
                         for (var l = 0; l < word.length; l++) {
                             var letter = word[l];
                             if (opts.gematriaPerLetter == true) {
-                              var gVal = TXP.Utils.TextSubstitution.GEMATRIA_ABSOLUTE_SOFIT[TXP.Utils.TextSubstitution.SUBSTITUTION_ATBASH[letter]];
+                              var gVal = TXP.Utils.TextSubstitution.GEMATRIA_ABSOLUTE[letter];
 
                               ret.push(gVal);
                             } else {

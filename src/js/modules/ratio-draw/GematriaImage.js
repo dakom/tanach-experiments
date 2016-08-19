@@ -1,8 +1,5 @@
 var RATIO_DRAW = (function(exports) {
-    //worthwhile links:
-    //http://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
-    //https://developer.mozilla.org/en/docs/Web/API/WebGLRenderingContext/texImage2D
-    //https://goocreate.com/learn/procedural-textures/
+    
 
     var GematriaFill = function(gTexture) {
         var vertexShader = $("#default-vertex-shader").text();
