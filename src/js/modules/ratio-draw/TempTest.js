@@ -1,4 +1,4 @@
-var IMAGE_GENERATOR = (function(exports) {
+var RATIO_DRAW = (function(exports) {
     exports.TempTest = function() {
         var bookNames = TXP.Books.names;
         var letterCount = 0;
@@ -25,4 +25,4 @@ var IMAGE_GENERATOR = (function(exports) {
 
     }
     return exports;
-}(IMAGE_GENERATOR || {}));
+}(RATIO_DRAW || {}));

@@ -1,7 +1,7 @@
-var IMAGE_GENERATOR = (function(exports) {
+var RATIO_DRAW = (function(exports) {
 
     function booksReady() {
-      //IMAGE_GENERATOR.DrawAlphaImage();
+      //RATIO_DRAW.DrawAlphaImage();
       var data = TXP.Books.GetFlattened({
         benchMark: true,
         //gematriaPerWord: true,
@@ -9,7 +9,7 @@ var IMAGE_GENERATOR = (function(exports) {
         //bookEndIndex: 5,
       });
 
-      IMAGE_GENERATOR.DrawGematriaImage(data);
+      RATIO_DRAW.DrawGematriaImage(data);
     }
 
     exports.Start = function(configOptions) {
@@ -25,4 +25,4 @@ var IMAGE_GENERATOR = (function(exports) {
     }
 
     return exports;
-}(IMAGE_GENERATOR || {}));
+}(RATIO_DRAW || {}));

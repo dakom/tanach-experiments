@@ -1,4 +1,4 @@
-var IMAGE_GENERATOR = (function(exports) {
+var RATIO_DRAW = (function(exports) {
     //worthwhile links:
     //http://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
     //https://developer.mozilla.org/en/docs/Web/API/WebGLRenderingContext/texImage2D
@@ -102,4 +102,4 @@ var IMAGE_GENERATOR = (function(exports) {
     }
 
     return exports;
-}(IMAGE_GENERATOR || {}));
+}(RATIO_DRAW || {}));

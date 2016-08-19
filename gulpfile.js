@@ -14,22 +14,26 @@ var inject = require('gulp-inject');
 
 //CLEAN
 gulp.task('clean', function() {
-    return del([
-        'dist',
-        './src/*-dev.html',
-    ]);
+  runSequence('clean-dev', 'clean-dist');
 
 });
 
 //DIST
+gulp.task('clean-dist', function() {
+    return del([
+        'dist',
+    ]);
+
+});
+
 gulp.task('dist', function() {
-    runSequence('clean', 'js-dist', 'copy-dist', 'html-dist');
+    runSequence('clean-dist', 'js-dist', 'copy-dist', 'html-dist');
 });
 
 gulp.task('js-dist', function() {
     return es.merge([
-        gulp.src(path.join('./src/js/modules/image-generator/', '**/*.js'))
-        .pipe(concat('image-generator.min.js'))
+        gulp.src(path.join('./src/js/modules/', '**/*.js'))
+        .pipe(concat('tanach-modules.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./dist/js')),
         gulp.src(path.join('./src/js/core/', '**/*.js'))
@@ -42,6 +46,7 @@ gulp.task('js-dist', function() {
 gulp.task('copy-dist', function() {
     return es.merge([
         gulp.src('./src/media/**/*').pipe(gulp.dest('./dist/media/')), //static stuff
+        gulp.src('./src/html/*.html').pipe(gulp.dest('./dist/')), //static stuff
         gulp.src('./src/external-libs/**/*').pipe(gulp.dest('./dist/external-libs/')), //static stuff
         gulp.src('./src/css/**/*.css').pipe(cleanCSS({
             compatibility: 'ie8'
@@ -50,7 +55,7 @@ gulp.task('copy-dist', function() {
 });
 
 gulp.task('html-dist', function() {
-    var target = gulp.src('./src/html/image-generator-template.html');
+    var target = gulp.src('./src/html/module-templates/**/*.html');
     var sources = gulp.src(['./dist/js/**/*.js', './dist/css/**/*.css'], {
         read: false
     });
@@ -58,7 +63,7 @@ gulp.task('html-dist', function() {
     target.pipe(inject(sources, {
         ignorePath: 'dist',
         addRootSlash: false
-    })).pipe(rename('image-generator.html')).pipe(gulp.dest('./dist'));
+    })).pipe(gulp.dest('./dist'));
 });
 
 
@@ -71,14 +76,14 @@ gulp.task('clean-temp-dist', function() {
 
 
 //Build HTML Template for DEV
-gulp.task('clean-html-dev', function() {
+gulp.task('clean-dev', function() {
     return del([
-        './src/*-dev.html',
+        './src/*.html',
     ]);
 });
 
 gulp.task('make-html-dev', function() {
-    var target = gulp.src('./src/html/image-generator-template.html');
+    var target = gulp.src('./src/html/module-templates/**/*.html');
     var sources = gulp.src(['./src/js/**/*.js', './src/css/**/*.css'], {
         read: false
     });
@@ -86,11 +91,15 @@ gulp.task('make-html-dev', function() {
     target.pipe(inject(sources, {
         ignorePath: 'src',
         addRootSlash: false
-    })).pipe(rename('image-generator-dev.html')).pipe(gulp.dest('./src'));
+    })).pipe(gulp.dest('./src'));
+});
+
+gulp.task('copy-index-dev', function() {
+    return gulp.src('./src/html/*.html').pipe(gulp.dest('./src/'));
 });
 
 gulp.task('build-html-dev', function() {
-    runSequence('clean-html-dev', 'make-html-dev');
+    runSequence('clean-dev', 'make-html-dev', 'copy-index-dev');
 });
 
 //WATCH
