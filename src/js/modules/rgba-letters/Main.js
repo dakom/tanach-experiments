@@ -11,7 +11,8 @@ var RGBA_LETTERS = (function(exports) {
       graphics.endFill();
 
       graphics.filters = [new RGBA_LETTERS.LettersPaletteFilter(lettersTexture, [
-        {x: 1.0, y: 1.0, z: 1.0, w: 1.0}
+        //PIXI.utils.hex2rgb(0x00FFFF)
+        {x: 0xFF, y: 0xFF, z: 0xFF}
       ])];
       //show it!
       TXP.stage.addChild(graphics);

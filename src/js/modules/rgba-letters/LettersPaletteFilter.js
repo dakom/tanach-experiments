@@ -1,5 +1,5 @@
 var RGBA_LETTERS = (function(exports) {
-  var LettersPaletteFilter = function(lTexture, lPalettes) {
+  var LettersPaletteFilter = function(lTexture, initPalettes) {
       var vertexShader = $("#default-vertex-shader").text();
       var fragmentShader = $("#letters-palette-fragment-shader").text();
       PIXI.Filter.call(this, vertexShader, fragmentShader, {
@@ -8,8 +8,8 @@ var RGBA_LETTERS = (function(exports) {
               value: lTexture
           },
           palette: {
-            type: 'v4',
-            value: lPalettes
+            type: 'v3v',
+            value: initPalettes
           }
       });
 

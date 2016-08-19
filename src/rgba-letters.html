@@ -20,13 +20,13 @@
     <script src="js/core/interactions/Touch.js"></script>
     <script src="js/core/utils/Gematria.js"></script>
     <script src="js/core/utils/TextSubstitution.js"></script>
-    <script src="js/modules/ratio-draw/GematriaImage.js"></script>
-    <script src="js/modules/ratio-draw/Main.js"></script>
-    <script src="js/modules/ratio-draw/TempTest.js"></script>
     <script src="js/modules/rgba-letters/LettersFilter.js"></script>
     <script src="js/modules/rgba-letters/LettersPaletteFilter.js"></script>
     <script src="js/modules/rgba-letters/LettersTexture.js"></script>
     <script src="js/modules/rgba-letters/Main.js"></script>
+    <script src="js/modules/ratio-draw/GematriaImage.js"></script>
+    <script src="js/modules/ratio-draw/Main.js"></script>
+    <script src="js/modules/ratio-draw/TempTest.js"></script>
     <!-- endinject -->
 
 </head>
@@ -66,15 +66,17 @@
 
   uniform sampler2D uSampler;
   uniform sampler2D lSampler;
-  uniform vec4 palette[1];
+  uniform vec3 palette[1];
   varying vec2 vTextureCoord;
 
   void main() {
 
     vec4 colorLookup = texture2D(lSampler, vTextureCoord);
 
-    vec4 pColor = palette[0];
+    vec3 pColor = palette[0];
     gl_FragColor.r = pColor.x; //base letter ... not working yet :\
+    gl_FragColor.g = pColor.y; //base letter ... not working yet :\
+    gl_FragColor.b = pColor.z; //base letter ... not working yet :\
     gl_FragColor.a = 1.0;
 
     //finalColor = pallete[colorLookup.g]; //atbash
