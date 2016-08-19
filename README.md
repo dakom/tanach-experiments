@@ -9,6 +9,7 @@ Live Demo: https://dakom.github.io/tanach-experiments
 * GPU-powered search and transformations
 * Filters over web video
 * Audio transforms
+* Make a filter which accesses each pure letter and does all transformations internally (will see changing with sliders!)
 
 ## A few notes from previous tests ran...
 
