@@ -1,4 +1,7 @@
 Various experiments with Tanach data
+by David Komer <david.komer@gmail.com>
+
+Live Demo: https://dakom.github.io/tanach-experiments
 
 # TODO:
 
