@@ -47,6 +47,7 @@ gulp.task('copy-dist', function() {
     return es.merge([
         gulp.src('./src/media/**/*').pipe(gulp.dest('./dist/media/')), //static stuff
         gulp.src('./src/html/*.html').pipe(gulp.dest('./dist/')), //static stuff
+        gulp.src('./src/shaders/*').pipe(gulp.dest('./dist/shaders/')), //static stuff
         gulp.src('./src/external-libs/**/*').pipe(gulp.dest('./dist/external-libs/')), //static stuff
         gulp.src('./src/css/**/*.css').pipe(cleanCSS({
             compatibility: 'ie8'
