@@ -1,5 +1,6 @@
 # TODO:
 * Click on pixel brings to pasuk in Sefaria or something
+* Maybe render right-to-left (just horizontal flip?)
 * 3D
 * GUI
 * AUDIO
