@@ -3,23 +3,45 @@
 precision mediump float;
 
 uniform sampler2D uSampler;
-uniform sampler2D lSampler;
-uniform vec3 palette[1];
+uniform float rPalette[28];
+uniform float gPalette[28];
+uniform float bPalette[28];
+uniform float aPalette[28];
+uniform float substitution;
 varying vec2 vTextureCoord;
 
 void main() {
+  vec4 colorLookup = texture2D(uSampler, vTextureCoord);
+  int paletteIndex;
 
-  vec4 colorLookup = texture2D(lSampler, vTextureCoord);
+  if(substitution == 0.0) {
+    paletteIndex = int(colorLookup.r * 255.0);
+  } else if(substitution == 1.0) {
+    paletteIndex = int(colorLookup.g * 255.0);
+  } else if(substitution == 2.0) {
+    paletteIndex = int(colorLookup.b * 255.0);
+  } else if(substitution == 3.0) {
+    paletteIndex = int(colorLookup.a * 255.0);
+  }
 
-  vec3 pColor = palette[0];
-  gl_FragColor.r = pColor.x; //base letter ... not working yet :\
-  gl_FragColor.g = pColor.y; //base letter ... not working yet :\
-  gl_FragColor.b = pColor.z; //base letter ... not working yet :\
-  gl_FragColor.a = 1.0;
+  /*  Yes - this is ridiculous, but it's the spec.
+      See: http://stackoverflow.com/questions/6247572/variable-array-index-not-possible-in-webgl-shaders
+      And: http://www.john-smith.me/hassles-with-array-access-in-webgl--and-a-couple-of-workarounds
+      etc.
 
-  //finalColor = pallete[colorLookup.g]; //atbash
-  //finalColor = pallete[colorLookup.b]; //albam
+      note that I tried optimizing the loop to just be a whole bunch of if statements and I got a "memory exhaust" error too
+  */
 
+  for (int i = 0; i < 28; i++) {
+    if (i == paletteIndex) {
+      colorLookup.r = rPalette[i];
+      colorLookup.g = gPalette[i];
+      colorLookup.b = bPalette[i];
+      colorLookup.a = aPalette[i];
+      break;
+    }
+  }
 
-
+  //for right now, alpha is always just 1.0 or 0.0 (on/off)
+  gl_FragColor = colorLookup * colorLookup.a;
 }

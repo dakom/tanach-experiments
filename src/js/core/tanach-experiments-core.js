@@ -5,7 +5,7 @@ var TXP = (function(exports) {
       exports.windowScaleRatio = scaleToWindow(exports.renderer.view, _bgColor);
   }
 
-  exports.Init = function(canvasWidth, canvasHeight, bgColor) {
+  exports.Init = function(canvasWidth, canvasHeight, bgColor, autoScaleWindow) {
       exports.canvasWidth = canvasWidth;
       exports.canvasHeight = canvasHeight;
 
@@ -19,8 +19,10 @@ var TXP = (function(exports) {
 
       requestAnimationFrame(mainGameLoop);
 
-      exports.DoScaleWindow();
-      window.addEventListener("resize", exports.DoScaleWindow);
+      if(autoScaleWindow === true) {
+        exports.DoScaleWindow();
+        window.addEventListener("resize", exports.DoScaleWindow);
+      }
   }
 
 
@@ -37,5 +39,5 @@ var TXP = (function(exports) {
     Utils: {},
     Shaders: {},
     Interactions: {},
-    Books: {}
+    TanachData: {}
   }));

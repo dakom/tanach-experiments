@@ -1,44 +1,65 @@
 var LETTERS_PALETTE = (function(exports) {
-
     function allReady() {
+      TXP.Init(window.innerWidth,LETTERS_PALETTE.GetTextureHeight(window.innerWidth), LETTERS_PALETTE.configOptions.bgColor);
       lettersTexture = LETTERS_PALETTE.GetLettersTexture(TXP.canvasWidth);
 
+      console.log("Created Texture " + lettersTexture.width + "x" + lettersTexture.height);
+      var initialPalette = createInitialPalette();
 
-      //create a graphic object to hold the filter, set it to white.
-      var graphics = new PIXI.Graphics();
-      graphics.beginFill(0xFFFFFF);
-      graphics.drawRect(0, 0, lettersTexture.width, lettersTexture.height);
-      graphics.endFill();
+      var lettersSprite = new PIXI.Sprite(lettersTexture);
+      exports.filter = new LETTERS_PALETTE.LettersFilter(initialPalette, 0.0);
+      lettersSprite.filters = [exports.filter];
+      TXP.stage.addChild(lettersSprite);
 
-      graphics.filters = [new LETTERS_PALETTE.LettersFilter([
-        {x: 1.0, y: 1.0, z: 1.0}
-      ])];
-      //show it!
-      TXP.stage.addChild(graphics);
 
+      LETTERS_PALETTE.Animation.Start();
+      LETTERS_PALETTE.Input.Start();
+    }
+
+    function createInitialPalette() {
+      var maxLetter = TXP.Utils.TextSubstitution.TEXT_HEBREW.length;
+      var rPalette = [];
+      var gPalette = [];
+      var bPalette = [];
+      var aPalette = [];
+
+      for(var i = 0; i < maxLetter; i++) {
+
+        rPalette[i] = Math.random();
+        gPalette[i] = Math.random();
+        bPalette[i] = Math.random();
+        aPalette[i] = 1.0;
+      }
+
+      return {
+        rPalette: rPalette,
+        gPalette: gPalette,
+        bPalette: bPalette,
+        aPalette: aPalette,
+      };
     }
 
     exports.Start = function(configOptions) {
 
 
         exports.configOptions = configOptions;
-        TXP.Init(configOptions.canvasWidth, configOptions.canvasHeight, configOptions.bgColor);
+
 
         var loadingGateLocked = 2;
 
-        TXP.Books.Load({
+        TXP.TanachData.Letters.Load({
           onComplete: function () {
 
             if(!--loadingGateLocked) {
               allReady();
             }
-            
+
           }
         });
 
         TXP.Shaders.Load({
           vertex: ['default'],
-          fragment: ['default']
+          fragment: ['default', 'letters-palette']
         }, {
           onComplete: function() {
             if(!--loadingGateLocked) {

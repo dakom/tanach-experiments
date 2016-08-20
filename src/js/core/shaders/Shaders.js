@@ -60,5 +60,5 @@ var TXP = (function(exports) {
     Utils: {},
     Shaders: {},
     Interactions: {},
-    Books: {}
+    TanachData: {}
 }));

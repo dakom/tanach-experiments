@@ -14,11 +14,16 @@
   <script src="external-libs/kittykatattack/scaleToWindow/scaleToWindow.js"></script>
     <!-- inject:js -->
     <script src="js/core/tanach-experiments-core.js"></script>
-    <script src="js/core/books/Books.js"></script>
     <script src="js/core/interactions/Touch.js"></script>
     <script src="js/core/shaders/Shaders.js"></script>
+    <script src="js/core/tanach-data/Books.js"></script>
+    <script src="js/core/tanach-data/Letters.js"></script>
+    <script src="js/core/utils/Download.js"></script>
     <script src="js/core/utils/Gematria.js"></script>
     <script src="js/core/utils/TextSubstitution.js"></script>
+    <script src="js/core/utils/Texture.js"></script>
+    <script src="js/modules/letters-palette/Animation.js"></script>
+    <script src="js/modules/letters-palette/Input.js"></script>
     <script src="js/modules/letters-palette/LettersFilter.js"></script>
     <script src="js/modules/letters-palette/LettersTexture.js"></script>
     <script src="js/modules/letters-palette/Main.js"></script>
@@ -32,9 +37,7 @@
     <script type="text/javascript">
     window.onload = function() {
       LETTERS_PALETTE.Start({
-        canvasWidth: 1024,
-        canvasHeight: 768,
-        bgColor: "#ccc",
+          bgColor: "#ccc",
       });
     }
 

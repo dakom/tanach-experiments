@@ -2,7 +2,7 @@ var RATIO_DRAW = (function(exports) {
 
   function allReady() {
     //RATIO_DRAW.DrawAlphaImage();
-    var data = TXP.Books.GetFlattened({
+    var data = TXP.TanachData.Books.GetFlattened({
       benchMark: true,
       //gematriaPerWord: true,
       gematriaPerLetter: true,
@@ -14,13 +14,12 @@ var RATIO_DRAW = (function(exports) {
 
     exports.Start = function(configOptions) {
 
-
         exports.configOptions = configOptions;
-        TXP.Init(configOptions.canvasWidth, configOptions.canvasHeight, configOptions.bgColor);
+        TXP.Init(window.innerWidth, window.innerHeight, configOptions.bgColor);
 
         var loadingGateLocked = 2;
 
-        TXP.Books.Load({
+        TXP.TanachData.Books.Load({
           onComplete: function () {
 
             if(!--loadingGateLocked) {

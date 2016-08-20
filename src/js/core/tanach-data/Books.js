@@ -46,7 +46,7 @@ var TXP = (function(exports) {
         loader = new PIXI.loaders.Loader();
         for (var i = 0; i < bookNames.length; i++) {
             var bookName = bookNames[i];
-            loader.add(bookName, 'media/tanach/' + bookName + '.json');
+            loader.add(bookName, 'media/tanach/books/' + bookName + '.json');
         }
 
         if (callbacks !== undefined) {
@@ -87,7 +87,6 @@ var TXP = (function(exports) {
             opts.startTime = new Date().getTime();
         }
 
-        var bookNames = TXP.Books.names;
         var letterCount = 0;
         //inclusive start
         var bookStartIndex = (opts.bookStartIndex === undefined) ? 0 : opts.bookStartIndex;
@@ -131,11 +130,13 @@ var TXP = (function(exports) {
     }
 
 
-    exports.Books.Load = Load;
-    exports.Books.GetData = GetData;
-    exports.Books.GetConfig = GetConfig;
-    exports.Books.GetFlattened = GetFlattened;
-    exports.Books.names = bookNames;
+    exports.TanachData.Books = {
+      Load: Load,
+      GetData: GetData,
+      GetConfig: GetConfig,
+      GetFlattened: GetFlattened,
+      names: bookNames
+    }
 
     return exports;
 
@@ -143,5 +144,5 @@ var TXP = (function(exports) {
     Utils: {},
     Shaders: {},
     Interactions: {},
-    Books: {}
+    TanachData: {}
 }));

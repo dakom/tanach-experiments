@@ -1,10 +1,8 @@
 # TODO:
-
-* Make UI for stacking settings
-* GPU-powered search and transformations
-* Filters over web video
-* Audio transforms
-* Make a filter which accesses each pure letter and does all transformations internally (will see changing with sliders!)
+* Click on pixel brings to pasuk in Sefaria or something
+* 3D
+* GUI
+* AUDIO
 
 ## A few notes from previous tests ran...
 
