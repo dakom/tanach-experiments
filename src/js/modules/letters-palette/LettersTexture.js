@@ -1,9 +1,12 @@
-var RGBA_LETTERS = (function(exports) {
+var LETTERS_PALETTE = (function(exports) {
     exports.GetLettersTexture = function(textureWidth) {
         var letters = TXP.Books.GetFlattened();
         var textureHeight = Math.ceil(letters.length / textureWidth);
 
-        var canvas = $('<canvas width="' + textureWidth + '" height="' + textureHeight + '"> </canvas>')[0];
+        var canvas = document.createElement('canvas');
+        canvas.width = textureWidth;
+        canvas.height = textureHeight;
+
         var ctx = (function() {
             if (canvas.getContext == undefined) {
                 return G_vmlCanvasManager.initElement(canvas).getContext("2d");
@@ -32,4 +35,4 @@ var RGBA_LETTERS = (function(exports) {
         return PIXI.Texture.fromCanvas(canvas);
     }
     return exports;
-}(RGBA_LETTERS || {}));
+}(LETTERS_PALETTE || {}));

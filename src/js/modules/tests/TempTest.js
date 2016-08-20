@@ -1,4 +1,4 @@
-var RATIO_DRAW = (function(exports) {
+var TESTS = (function(exports) {
     exports.TempTest = function() {
         var bookNames = TXP.Books.names;
         var letterCount = 0;
@@ -25,4 +25,4 @@ var RATIO_DRAW = (function(exports) {
 
     }
     return exports;
-}(RATIO_DRAW || {}));
+}(TESTS || {}));

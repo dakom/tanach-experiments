@@ -1,10 +1,8 @@
 var RATIO_DRAW = (function(exports) {
-    
+
 
     var GematriaFill = function(gTexture) {
-        var vertexShader = $("#default-vertex-shader").text();
-        var fragmentShader = $("#gematria-fragment-shader").text();
-        PIXI.Filter.call(this, vertexShader, fragmentShader, {
+      PIXI.Filter.call(this, TXP.Shaders.GetVertexCode('default'), TXP.Shaders.GetFragmentCode('default'), {
             gSampler: {
                 type: 'sampler2D',
                 value: gTexture
@@ -29,7 +27,10 @@ var RATIO_DRAW = (function(exports) {
     });
 
     function getTextureFromData(gematriaData, options) {
-        var canvas = $('<canvas width="' + TXP.canvasWidth + '" height="' + TXP.canvasHeight + '"> </canvas>')[0];
+      var canvas = document.createElement('canvas');
+    canvas.width = TXP.canvasWidth;
+    canvas.height = TXP.canvasHeight;
+    
         var ctx = (function() {
             if (canvas.getContext == undefined) {
                 return G_vmlCanvasManager.initElement(canvas).getContext("2d");
@@ -45,9 +46,6 @@ var RATIO_DRAW = (function(exports) {
                 gMax = gematriaData[i];
             }
         }
-
-        console.log(gMax);
-        console.log(gematriaData.length + " vs " + imgData.data.length);
 
         var rgbMax = 0xFFFFFF;
 

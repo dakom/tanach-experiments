@@ -1,16 +1,22 @@
-var RATIO_DRAW = (function(exports) {
+var LETTERS_PALETTE = (function(exports) {
 
-  function allReady() {
-    //RATIO_DRAW.DrawAlphaImage();
-    var data = TXP.Books.GetFlattened({
-      benchMark: true,
-      //gematriaPerWord: true,
-      gematriaPerLetter: true,
-      //bookEndIndex: 5,
-    });
+    function allReady() {
+      lettersTexture = LETTERS_PALETTE.GetLettersTexture(TXP.canvasWidth);
 
-    RATIO_DRAW.DrawGematriaImage(data);
-  }
+
+      //create a graphic object to hold the filter, set it to white.
+      var graphics = new PIXI.Graphics();
+      graphics.beginFill(0xFFFFFF);
+      graphics.drawRect(0, 0, lettersTexture.width, lettersTexture.height);
+      graphics.endFill();
+
+      graphics.filters = [new LETTERS_PALETTE.LettersFilter([
+        {x: 1.0, y: 1.0, z: 1.0}
+      ])];
+      //show it!
+      TXP.stage.addChild(graphics);
+
+    }
 
     exports.Start = function(configOptions) {
 
@@ -26,6 +32,7 @@ var RATIO_DRAW = (function(exports) {
             if(!--loadingGateLocked) {
               allReady();
             }
+            
           }
         });
 
@@ -37,10 +44,11 @@ var RATIO_DRAW = (function(exports) {
             if(!--loadingGateLocked) {
               allReady();
             }
+
           }
         });
 
     }
 
     return exports;
-}(RATIO_DRAW || {}));
+}(LETTERS_PALETTE || {}));
