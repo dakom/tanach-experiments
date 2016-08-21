@@ -1,16 +1,5 @@
 # TODO:
-* Click on pixel brings to pasuk in Sefaria or something
- * followup with comment at http://stackoverflow.com/questions/6735470/get-pixel-color-from-canvas-on-mouseover
- var index = (Math.floor(y) * canvasWidth + Math.floor(x)) * 4
- var r = data[index]
- var g = data[index + 1]
- var b = data[index + 2]
- var a = data[index + 3]
- what is the 4?
-* Maybe render right-to-left (just horizontal flip?)
-* 3D
-* GUI
-* AUDIO
+* Zoom rectangle, shows actual letters in selected window; movable
 
 ## A few notes from previous tests ran...
 
