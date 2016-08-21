@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device_width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Tanach Viewer - Demo Pages</title>
+	<style type="text/css">
+			body,html {
+				padding: 0;
+				margin: 0;
+			}
+		#content {
+			font-size: xx-large;
+			width: 90%;
+			margin: 0 auto;
+		}
+		#list {
+			margin-top: 20px;
+			margin-left: 20px;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+	<p>Tanach Experiments</a><br/> <span style="font-size: large;">by <a  href="mailto:david.komer@gmail.com">David Komer</a></span>
+  <p/>
+  Live Links:
+  <div id="list">
+    <a href="gematria-hilight.html">Gematria Hilight </a> - Hilight gematria matches in all of Tanach
+    <p/>
+    <a href="letters-palette.html">Letters Palette </a> - View all the Tanach letters as colors
+    <p/>
+    <a href="ratio-draw.html">Ratio Draw </a> - Testing the idea of ratio-based colors for words
+  </div>
+<p/>
+<i>Generic Notes:</i>
+  <p/>You <b>must</b> be using a modern web browser which supports WebGL (most updated versions do - unless you're on internet explorer).
+  <p/>
+  If your want to adjust the resolution or get rid of scrollbars, you should usually resize your window and hit <i>refresh</i>
+  <p/>
+  <p/>Where flipping is available, the initial settings are flipped horizontal, e.g. to simulate right-to-left
+  <p/>Source code is available <a href="https://github.com/dakom/tanach-experiments">here</a>
+  <p/><i>Specific Notes:</i>
+	<div id="list">
+    <b>Gematria Hilight</b>
+    <div id="list">
+      <b>Keys:</b>
+      <p/>
+      <table border="0">
+
+      <tr><td>Spacebar:</td><td>&nbsp;&nbsp;Pause/Play animation</td></tr>
+      <tr><td>Up:</td><td>&nbsp;&nbsp;Faster animation</td></tr>
+      <tr><td>Down:</td><td>&nbsp;&nbsp;Slower animation</td></tr>
+      <tr><td>C:</td><td>&nbsp;&nbsp;Lock Color</td></tr>
+      <tr><td>F:</td><td>&nbsp;&nbsp;Flip Horizontal</td></tr>
+      <tr><td>Edit Value:</td><td>&nbsp;&nbsp;Manually set current value</td></tr>
+    </table>
+    <p/>
+    <b>Notes:</b>
+    <div id="list">
+      This experiment highlights gematria matches throughout all of Tanach
+      <p/>Unlike in the <i>Letters Palette</i> below, Sofits are not distinct here (tav-400 is the highest)
+      <p/>Colors are random and have no inherent meaning, and you can lock it on a particular color if you want
+
+    </div>
+  </div>
+
+    <b>Letters Palette</b>
+    <br>
+
+    <div id="list">
+      <b>Keys:</b>
+      <p/>
+      <table border="0">
+
+      <tr><td>Spacebar:</td><td>&nbsp;&nbsp;Pause/Play animation</td></tr>
+      <tr><td>Up:</td><td>&nbsp;&nbsp;Isolate next letter</td></tr>
+      <tr><td>Down:</td><td>&nbsp;&nbsp;Isolate previous letter</td></tr>
+      <tr><td>1:</td><td>&nbsp;&nbsp;Regular</td></tr>
+      <tr><td>2:</td><td>&nbsp;&nbsp;Atbash</td></tr>
+      <tr><td>3:</td><td>&nbsp;&nbsp;Albam</td></tr>
+      <tr><td>F:</td><td>&nbsp;&nbsp;Flip Horizontal</td></tr>
+      </table>
+
+
+      <p/>
+      <b>Notes:</b>
+      <div id="list">
+        This experiment colors a pixel for <i>every letter in Tanach</i>
+        <p/>You can isolate any particular letter, as well as substitute all the letters according to <i>atbash</i> or <i>albam</i>
+        <p/>The color palette begins with random assignments, and animates with random speeds. You can pause it at any time
+        To adjust the resolution, see above
+        <p/>Soft's are distinct (i.e. after tav is mem sofit, nun sofit, etc.) If you want to see the current chosen letter - look in the developer's console
+
+      </div>
+    </div>
+    <b>Ratio Draw</b>
+    <p/>
+    <b>Keys/Controls: None</b>
+    <p/>
+
+    <b>Notes:</b>
+    <div id="list">
+      <p> Currently set to Sofit-Atbash (gematria of each letter, transposed in atbash, and including the extra value for Sofit's)
+    </div>
+
+
+	</div>
+<p/>
+
+
+	</div>
+	</body>
+</html>

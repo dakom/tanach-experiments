@@ -9,6 +9,7 @@ var RATIO_DRAW = (function(exports) {
       //bookEndIndex: 5,
     });
 
+    
     RATIO_DRAW.DrawGematriaImage(data);
   }
 
