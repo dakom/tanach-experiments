@@ -8,7 +8,7 @@
 
     <!-- inject:css -->
     <!-- endinject -->
-
+    <script src="external-libs/jquery/jquery-1.12.4.min.js"></script>
   <script src="external-libs/pixi/pixi.min.js"></script>
   <script src="external-libs/kittykatattack/scaleToWindow/scaleToWindow.js"></script>
     <!-- inject:js -->
@@ -16,8 +16,12 @@
 
 </head>
 <body>
-    <table width="100%" border="0" style="margin-top: 20px; font-size: x-large">
-      <tr align="center"><td align="right">Gematria Value:&nbsp;&nbsp;</td><td align="left"><input id="gemval" name="gemval" type="text" /></td></tr>
+
+    <br/>
+    <table width="100%" border="0" style="font-size: x-large">
+      <tr align="center"><td align="right">Gematria Value:&nbsp;&nbsp;</td><td align="left"><span id="gemval" /></td></tr>
+
+      <tr align="center"><td align="right">Change:&nbsp;&nbsp;</td><td align="left"><input id="ingem" name="ingem" type="text" /></td></tr>
     </table>
     <p/>
     <script type="text/javascript">

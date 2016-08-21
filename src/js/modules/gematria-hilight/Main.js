@@ -3,6 +3,19 @@ var GEMATRIA_HILIGHT = (function(exports) {
       exports.allLetters = TXP.TanachData.Books.GetAllLetters();
       exports.allWords = TXP.TanachData.Books.GetAllWords();
 
+      exports.maxGematria = 0;
+      exports.minGematria = 1640;
+
+      for(var i = 0; i < GEMATRIA_HILIGHT.allWords.length; i++) {
+        var gematria = TXP.Utils.Gematria.CountHebArray(GEMATRIA_HILIGHT.allWords[i]);
+        if(gematria > exports.maxGematria) {
+          exports.maxGematria = gematria;
+        }
+        if(gematria <  exports.minGematria) {
+          exports.minGematria = gematria;
+        }
+      };
+
       TXP.Init(window.innerWidth,GEMATRIA_HILIGHT.GetTextureHeight(window.innerWidth), GEMATRIA_HILIGHT.configOptions.bgColor);
       gematriaTexture = GEMATRIA_HILIGHT.GetGematriaTexture(TXP.canvasWidth);
 
@@ -15,14 +28,15 @@ var GEMATRIA_HILIGHT = (function(exports) {
       exports.sprite.y = exports.sprite.height/2;
       exports.sprite.scale.x *= -1; //flip horizontal... right to left I guess
 
-      exports.filter = new GEMATRIA_HILIGHT.GematriaFilter(913.0, 0.0);
+      exports.filter = new GEMATRIA_HILIGHT.GematriaFilter();
+
       exports.sprite.filters = [exports.filter];
 
       TXP.stage.addChild(exports.sprite);
 
 
-      //GEMATRIA_HILIGHT.Animation.Start();
-      //GEMATRIA_HILIGHT.Input.Start();
+      GEMATRIA_HILIGHT.Animation.Start();
+      GEMATRIA_HILIGHT.Controls.Start();
     }
 
 

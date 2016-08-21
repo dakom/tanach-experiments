@@ -31,7 +31,7 @@ var LETTERS_PALETTE = (function(exports) {
             imgData.data[imageIndex++] = letter; //red channel - baseLetter
             imgData.data[imageIndex++] = atBash; //green channel - letter as atBash
             imgData.data[imageIndex++] = alBam; //blue channel - letter as alBam
-            imgData.data[imageIndex++] = 0xFF; //Unused for now....
+            imgData.data[imageIndex++] = 0xFF; //can't pass data here, seems to be pre-multipled or something
 
             if(letterIndex < 20) {
               //console.log(letter + " " + atBash + " " + alBam);

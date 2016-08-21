@@ -40,35 +40,22 @@ var GEMATRIA_HILIGHT = (function(exports) {
             finished = true;
           }
 
-          //largest gematria fits in 0xFFF actually... so we could squeeze a third, but meh
           var gematria = TXP.Utils.Gematria.CountHebArray(word);
-          var gematriaSofit = TXP.Utils.Gematria.CountHebArray(word, {sofit: true});
 
-          var gematria1;
-          var gematria2;
+          //to-do: largest gematria fits in 0xFFF actually... so we could squeeze both across rgb, but meh
 
-          gematria1 = (gematria >> 8 & 0xFF);
-          gematria2 = (gematria & 0xFF);
-
-          if(gematria1 == 0.0 && gematria2 == 0.0) {
-            console.log("gematria is 0?! " + wordIndex);
-          }
-
-          imgData.data[imageIndex++] = gematria1;
-          imgData.data[imageIndex++] = gematria2;
-
-          gematria1 = (gematriaSofit >> 8 & 0xFF);
-          gematria2 = (gematriaSofit & 0xFF);
-
-          if(gematria1 == 0.0 && gematria2 == 0.0) {
-            console.log("gematria is 0?! " + wordIndex);
-          }
-          
-          imgData.data[imageIndex++] = gematria1;
-          imgData.data[imageIndex++] = gematria2;
+          imgData.data[imageIndex++] = (gematria >> 8 & 0xFF); //high bits
+          imgData.data[imageIndex++] = (gematria & 0xFF); //low bits
+          imgData.data[imageIndex++] = 0x0; //unused atm
+          imgData.data[imageIndex++] = 0xFF; //can't pass data here, seems to be pre-multipled or something
 
         }
 
+        if((913 >> 8 & 0xFF) == imgData.data[0] && (913 & 0xFF) == imgData.data[1]) {
+          console.log("looks good from imgData side");
+        } else {
+          console.log("error on imgData side");
+        }
 
         ctx.putImageData(imgData, 0, 0);
         return PIXI.Texture.fromCanvas(canvas);

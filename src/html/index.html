@@ -25,36 +25,50 @@
 
 <body>
 	<div id="content">
-	<p>Demo pages for <a href="https://github.com/dakom/tanach-experiments">Tanach Experiments</a><br/> <span style="font-size: large;">by <a  href="mailto:david.komer@gmail.com">David Komer</a></span>
+	<p>Tanach Experiments</a><br/> <span style="font-size: large;">by <a  href="mailto:david.komer@gmail.com">David Komer</a></span>
   <p/>
-  You <b>must</b> be using a modern web browser which supports WebGL (most updated versions do - unless you're on internet explorer).
+  Live Links:
+  <div id="list">
+    <a href="gematria-hilight.html">Gematria Hilight </a> - Hilight gematria matches in all of Tanach
+    <p/>
+    <a href="letters-palette.html">Letters Palette </a> - View all the Tanach letters as colors
+    <p/>
+    <a href="ratio-draw.html">Ratio Draw </a> - Testing the idea of ratio-based colors for words
+  </div>
+<p/>
+<i>Generic Notes:</i>
+  <p/>You <b>must</b> be using a modern web browser which supports WebGL (most updated versions do - unless you're on internet explorer).
   <p/>
   If your want to adjust the resolution or get rid of scrollbars, you should usually resize your window and hit <i>refresh</i>
   <p/>
+  <p/>Where flipping is available, the initial settings are flipped horizontal, e.g. to simulate right-to-left
+  <p/>Source code is available <a href="https://github.com/dakom/tanach-experiments">here</a>
+  <p/><i>Specific Notes:</i>
 	<div id="list">
-    <a href="gematria-hilight.html">Gematria Hilight </a> - Hilight matches in Tanach
-    <br>
-
+    <b>Gematria Hilight</b>
     <div id="list">
       <b>Keys:</b>
       <p/>
       <table border="0">
 
       <tr><td>Spacebar:</td><td>&nbsp;&nbsp;Pause/Play animation</td></tr>
+      <tr><td>Up:</td><td>&nbsp;&nbsp;Faster animation</td></tr>
+      <tr><td>Down:</td><td>&nbsp;&nbsp;Slower animation</td></tr>
+      <tr><td>C:</td><td>&nbsp;&nbsp;Lock Color</td></tr>
       <tr><td>F:</td><td>&nbsp;&nbsp;Flip Horizontal</td></tr>
       <tr><td>Edit Value:</td><td>&nbsp;&nbsp;Manually set current value</td></tr>
     </table>
     <p/>
     <b>Notes:</b>
     <div id="list">
-      This experiment shows a greyscale for every letter in Tanach and highlights matches to gematria
-      <p/>In animation mode, it automatically cycles from the lowest to highest value
+      This experiment highlights gematria matches throughout all of Tanach
       <p/>Unlike in the <i>Letters Palette</i> below, Sofits are not distinct here (tav-400 is the highest)
-      <p>It begins flipped horizontal, e.g. to simulate right-to-left, but you can flip that back if you want.
+      <p/>Colors are random and have no inherent meaning, and you can lock it on a particular color if you want
+
     </div>
   </div>
 
-    <a href="letters-palette.html">Letters Palette </a> - view all the letters of Tanach as colors
+    <b>Letters Palette</b>
     <br>
 
     <div id="list">
@@ -78,19 +92,26 @@
         This experiment colors a pixel for <i>every letter in Tanach</i>
         <p/>You can isolate any particular letter, as well as substitute all the letters according to <i>atbash</i> or <i>albam</i>
         <p/>The color palette begins with random assignments, and animates with random speeds. You can pause it at any time
-        <p/>When you first start, the app will take the width of your screen and construct the pixels to fill it until the target height.
         To adjust the resolution, see above
         <p/>Soft's are distinct (i.e. after tav is mem sofit, nun sofit, etc.) If you want to see the current chosen letter - look in the developer's console
-        <p>It begins flipped horizontal, e.g. to simulate right-to-left, but you can flip that back if you want.
 
       </div>
     </div>
-    <br/>
-
+    <b>Ratio Draw</b>
     <p/>
-		<a href="ratio-draw.html">Ratio Draw </a> currently set to Sofit-Atbash (gematria of each letter, transposed in atbash, and including the extra value for Sofit's)
+    <b>Keys/Controls: None</b>
+    <p/>
+
+    <b>Notes:</b>
+    <div id="list">
+      <p> Currently set to Sofit-Atbash (gematria of each letter, transposed in atbash, and including the extra value for Sofit's)
+    </div>
+
 
 	</div>
+<p/>
+
+
 	</div>
 	</body>
 </html>

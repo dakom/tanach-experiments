@@ -1,23 +1,20 @@
 var GEMATRIA_HILIGHT = (function(exports) {
 
-    var GematriaFilter = function(initGematria, sofit) {
+    var GematriaFilter = function(initGematria) {
 
         PIXI.Filter.call(this, TXP.Shaders.GetVertexCode('default'), TXP.Shaders.GetFragmentCode('gematria-hilight'),
         {
-            sofit: {
-                value: sofit
-            },
-            gematria1: {
+            gematriaHigh: {
                 value: 0.0
             },
-            gematria2: {
+            gematriaLow: {
                 value: 0.0
+            },
+            hilightColor: {
+              value: [1.0, 1.0, 0.0, 1.0]
             }
           }
         );
-
-        this.gematria = initGematria;
-        this.sofit = sofit;
     }
 
   GematriaFilter.prototype = Object.create(PIXI.Filter.prototype);
@@ -25,23 +22,21 @@ var GEMATRIA_HILIGHT = (function(exports) {
     Object.defineProperties(GematriaFilter.prototype, {
         gematria: {
             get: function() {
-                //this.uniforms.gematria
-                var gem1 = 0;
-                var gem2 = 0;
-                var combined = 0;
-                return combined;
+                var highVal = ((this.uniforms.gematriaHigh * 0xFF) << 8 & 0xFF);
+                var lowVal = ((this.uniforms.gematriaLow * 0xFF) & 0xFF);
+                return (highVal + lowVal);
             },
             set: function(value) {
-                this.uniforms.gematria1 = 0.0;
-                this.uniforms.gematria2 = 0.0;
+                this.uniforms.gematriaHigh = (value >> 8 & 0xFF) / 0xFF;
+                this.uniforms.gematriaLow = (value & 0xFF) / 0xFF;
             }
         },
-        sofit: {
+        hilightColor: {
             get: function() {
-                return this.uniforms.sofit;
+                return this.uniforms.hilightColor;
             },
             set: function(value) {
-                this.uniforms.sofit = value;
+                this.uniforms.hilightColor = value;
             }
         }
     });
