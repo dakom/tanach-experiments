@@ -2,9 +2,9 @@
 // to pick one. mediump is a good default
 precision mediump float;
 
-uniform sampler2D uSampler;
+uniform sampler2D gSampler;
 varying vec2 vTextureCoord;
 
 void main() {
-  gl_FragColor = texture2D(uSampler, vTextureCoord);
+  gl_FragColor = texture2D(gSampler, vTextureCoord);
 }
