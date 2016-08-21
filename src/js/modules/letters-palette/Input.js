@@ -27,7 +27,7 @@ var LETTERS_PALETTE = (function(exports) {
 
     window.addEventListener("keydown", function(key) {
         var keyCode = key.keyCode;
-        
+        console.log(keyCode);
         switch(keyCode) {
           case 32: //space
             LETTERS_PALETTE.Animation.TogglePause();
@@ -51,6 +51,10 @@ var LETTERS_PALETTE = (function(exports) {
 
           case 51: //1
             filter.substitution = 2.0; // albam
+            break;
+
+          case 70: //f
+            exports.sprite.scale.x *= -1; //flip sprite horizontal
             break;
 
           default:
