@@ -2,7 +2,7 @@ var RATIO_DRAW = (function(exports) {
 
 
     var GematriaFill = function(gTexture) {
-      PIXI.Filter.call(this, TXP.Shaders.GetVertexCode('default'), TXP.Shaders.GetFragmentCode('default'), {
+      PIXI.Filter.call(this, TXP.Shaders.GetVertexCode('default'), TXP.Shaders.GetFragmentCode('ratio'), {
             gSampler: {
                 type: 'sampler2D',
                 value: gTexture
@@ -30,7 +30,7 @@ var RATIO_DRAW = (function(exports) {
       var canvas = document.createElement('canvas');
     canvas.width = TXP.canvasWidth;
     canvas.height = TXP.canvasHeight;
-    
+
         var ctx = (function() {
             if (canvas.getContext == undefined) {
                 return G_vmlCanvasManager.initElement(canvas).getContext("2d");

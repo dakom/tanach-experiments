@@ -9,7 +9,7 @@ var RATIO_DRAW = (function(exports) {
       //bookEndIndex: 5,
     });
 
-    
+
     RATIO_DRAW.DrawGematriaImage(data);
   }
 
@@ -31,7 +31,7 @@ var RATIO_DRAW = (function(exports) {
 
         TXP.Shaders.Load({
           vertex: ['default'],
-          fragment: ['default']
+          fragment: ['default', 'ratio']
         }, {
           onComplete: function() {
             if(!--loadingGateLocked) {
