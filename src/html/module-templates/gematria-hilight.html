@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device_width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Tanach Viewer - Gematria Hilight</title>
+
+    <!-- inject:css -->
+    <!-- endinject -->
+
+  <script src="external-libs/pixi/pixi.min.js"></script>
+  <script src="external-libs/kittykatattack/scaleToWindow/scaleToWindow.js"></script>
+    <!-- inject:js -->
+    <!-- endinject -->
+
+</head>
+<body>
+    <table width="100%" border="0" style="margin-top: 20px; font-size: x-large">
+      <tr align="center"><td align="right">Gematria Value:&nbsp;&nbsp;</td><td align="left"><input id="gemval" name="gemval" type="text" /></td></tr>
+    </table>
+    <p/>
+    <script type="text/javascript">
+    window.onload = function() {
+      GEMATRIA_HILIGHT.Start({
+          bgColor: "#ccc",
+      });
+    }
+
+    </script>
+</body>
+</html>

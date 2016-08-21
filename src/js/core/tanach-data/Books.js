@@ -1,53 +1,10 @@
 var TXP = (function(exports) {
     var loader;
-    var bookNames = [
-        'bereishit',
-        'shmot',
-        'vayikra',
-        'bamidbar',
-        'devarim',
-        'yehoshua',
-        'shoftim',
-        'shmueli',
-        'shmuelii',
-        'melachimi',
-        'melachimii',
-        'yishayahu',
-        'yirmiyahu',
-        'yechezkiel',
-        'hosea',
-        'yoel',
-        'amos',
-        'ovadiah',
-        'yonah',
-        'micha',
-        'nachum',
-        'chabakuk',
-        'zephaniah',
-        'chaggai',
-        'zechariah',
-        'malachai',
-        'tehillim',
-        'mishlei',
-        'iyov',
-        'shirhashirim',
-        'ruth',
-        'eicha',
-        'kohelet',
-        'esther',
-        'daniel',
-        'ezra',
-        'nechemia',
-        'divreihayamimi',
-        'divreihayamimii'
-    ];
+    var flatData;
 
     function Load(callbacks) {
         loader = new PIXI.loaders.Loader();
-        for (var i = 0; i < bookNames.length; i++) {
-            var bookName = bookNames[i];
-            loader.add(bookName, 'media/tanach/books/' + bookName + '.json');
-        }
+        loader.add('books', 'media/tanach/books/all-books.json');
 
         if (callbacks !== undefined) {
             if (callbacks.onProgress !== undefined) {
@@ -70,72 +27,67 @@ var TXP = (function(exports) {
         loader.load();
     }
 
-    function GetConfig(bookName) {
-        return loader.resources[bookName].data;
+
+    function GetData() {
+        return loader.resources['books'].data;
     }
 
-    function GetData(bookName) {
-        return GetConfig(bookName).data;
-    }
+    function GetAllLetters() {
 
+      ret = [];
+      var allData = GetData();
+      bookMax = allData.length;
+      for(var i = 0; i < bookMax; i++) {
 
-    function GetFlattened(opts) {
-      if(opts === undefined || opts === null) {
-        opts = {};
+          var bookData = allData[i];
+          for (var p = 0; p < bookData.length; p++) {
+              var pasuk = bookData[p];
+
+              for (var w = 0; w < pasuk.length; w++) {
+                  var word = pasuk[w];
+
+                  for (var l = 0; l < word.length; l++) {
+                      var letter = word[l];
+                      ret.push(letter);
+                  }
+              }
+          }
       }
-        if (opts.benchMark) {
-            opts.startTime = new Date().getTime();
-        }
 
-        var letterCount = 0;
-        //inclusive start
-        var bookStartIndex = (opts.bookStartIndex === undefined) ? 0 : opts.bookStartIndex;
-        //non-inclusive end (5 is all of chumash)
-        var bookEndIndex = (opts.bookEndIndex === undefined) ? bookNames.length : opts.bookEndIndex;
-        var ret = [];
-        var gemCount = 0;
+      return ret;
 
-        for (var b = bookStartIndex; b < bookEndIndex; b++) {
-            var bookData = GetData(bookNames[b]);
-            for (var p = 0; p < bookData.length; p++) {
-                var pasuk = bookData[p];
 
-                for (var w = 0; w < pasuk.length; w++) {
-                    var word = pasuk[w];
-                    if (opts.gematriaPerWord == true) {
-                        var gVal = TXP.Utils.Gematria.CountHebArray(word);
-                        ret.push(gVal);
-                    } else {
-                        for (var l = 0; l < word.length; l++) {
-                            var letter = word[l];
-                            if (opts.gematriaPerLetter == true) {
-                              var gVal = TXP.Utils.TextSubstitution.GEMATRIA_ABSOLUTE[letter];
-
-                              ret.push(gVal);
-                            } else {
-                              ret.push(letter);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        if (opts.benchMark) {
-            var timeDiff = new Date().getTime() - opts.startTime;
-            console.log("total time: " + timeDiff + " milliseconds");
-        }
-
-        return ret;
     }
+
+    function GetAllWords(style) {
+
+      ret = [];
+      var allData = GetData();
+      bookMax = allData.length;
+      for(var i = 0; i < bookMax; i++) {
+
+          var bookData = allData[i];
+          for (var p = 0; p < bookData.length; p++) {
+              var pasuk = bookData[p];
+
+              for (var w = 0; w < pasuk.length; w++) {
+                  var word = pasuk[w];
+                  ret.push(word);
+
+              }
+          }
+      }
+
+      return ret;
+    }
+
 
 
     exports.TanachData.Books = {
       Load: Load,
       GetData: GetData,
-      GetConfig: GetConfig,
-      GetFlattened: GetFlattened,
-      names: bookNames
+      GetAllLetters: GetAllLetters,
+      GetAllWords: GetAllWords,
     }
 
     return exports;

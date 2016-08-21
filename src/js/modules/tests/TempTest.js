@@ -3,13 +3,67 @@ var TESTS = (function(exports) {
     var TANACH_COUNT = 1196838;
 
     exports.BookTest = function() {
-        var bookNames = TXP.TanachData.Books.names;
+        var letterCount = 0;
+        var bookMax = 5; //TXP.Books.names.length; // 5; //chumash
+
+        var allData = TXP.TanachData.Books.GetData();
+
+        for(var i = 0; i < 5; i++) {
+            var bookData = allData[i];
+            for (var p = 0; p < bookData.length; p++) {
+                var pasuk = bookData[p];
+
+                for (var w = 0; w < pasuk.length; w++) {
+                    var word = pasuk[w];
+
+                    for (var l = 0; l < word.length; l++) {
+                        var letter = word[l];
+                        letterCount++;
+                    }
+                }
+            }
+        }
+
+        if(letterCount != CHUMASH_COUNT) {
+          alert("CHUMASH BOOK TEST FAILED!");
+        } else {
+          console.log("CHUMASH BOOK TEST PASSED!");
+        }
+
+        letterCount = 0;
+        bookMax = allData.length;
+        for(var i = 0; i < bookMax; i++) {
+            
+            var bookData = allData[i];
+            for (var p = 0; p < bookData.length; p++) {
+                var pasuk = bookData[p];
+
+                for (var w = 0; w < pasuk.length; w++) {
+                    var word = pasuk[w];
+
+                    for (var l = 0; l < word.length; l++) {
+                        var letter = word[l];
+                        letterCount++;
+                    }
+                }
+            }
+        }
+
+        if(letterCount != TANACH_COUNT) {
+          alert("TANACH BOOK TEST FAILED!");
+        } else {
+          console.log("TANACH BOOK TEST PASSED!");
+        }
+    }
+
+    exports.SeparateBookTest = function() {
+        var bookNames = TXP.TanachData.SeparateBooks.names;
         var letterCount = 0;
         var bookMax = 5; //TXP.Books.names.length; // 5; //chumash
 
         for(var i = 0; i < bookMax; i++) {
             var bookName = bookNames[i];
-            var bookData = TXP.TanachData.Books.GetData(bookName);
+            var bookData = TXP.TanachData.SeparateBooks.GetData(bookName);
             for (var p = 0; p < bookData.length; p++) {
                 var pasuk = bookData[p];
 
@@ -34,7 +88,7 @@ var TESTS = (function(exports) {
         bookMax = bookNames.length;
         for(var i = 0; i < bookMax; i++) {
             var bookName = bookNames[i];
-            var bookData = TXP.TanachData.Books.GetData(bookName);
+            var bookData = TXP.TanachData.SeparateBooks.GetData(bookName);
             for (var p = 0; p < bookData.length; p++) {
                 var pasuk = bookData[p];
 

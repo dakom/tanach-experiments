@@ -29,8 +29,8 @@ var LETTERS_PALETTE = (function(exports) {
             var atBash = TXP.Utils.TextSubstitution.SUBSTITUTION_ATBASH[letter];
             var alBam = TXP.Utils.TextSubstitution.SUBSTITUTION_ALBAM[letter];
             imgData.data[imageIndex++] = letter; //red channel - baseLetter
-            imgData.data[imageIndex++] = atBash; //blue channel - letter as atBash
-            imgData.data[imageIndex++] = alBam; //green channel - letter as alBam
+            imgData.data[imageIndex++] = atBash; //green channel - letter as atBash
+            imgData.data[imageIndex++] = alBam; //blue channel - letter as alBam
             imgData.data[imageIndex++] = 0xFF; //Unused for now....
 
             if(letterIndex < 20) {
