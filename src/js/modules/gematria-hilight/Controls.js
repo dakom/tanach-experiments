@@ -2,12 +2,24 @@ var GEMATRIA_HILIGHT = (function(exports) {
   function SetGematria(val) {
       exports.filter.gematria = val;
       if(GEMATRIA_HILIGHT.Animation.IsColorChange() == true) {
-        exports.filter.hilightColor = [
+        var newColor = [
           Math.random(),
           Math.random(),
           Math.random(),
           1.0
         ];
+
+        if(newColor[0] < 0.5 && newColor[1] < 0.5 && newColor[2] < 0.5) {
+          var coinToss = Math.random();
+          if(coinToss < 0.3) {
+            newColor[0] += 0.5;
+          } else if(coinToss < 0.6) {
+            newColor[1] += 0.5;
+          } else {
+            newColor[2] += 0.5;
+          }
+        }
+        exports.filter.hilightColor = newColor;
 
 
       }
