@@ -47,7 +47,29 @@ var GEMATRIA_HILIGHT = (function(exports) {
           SetGematria(val);
         }
 
-      })
+      });
+
+      exports.sprite.interactive = true;
+      TXP.Interactions.TouchEvent.addTouchStartListener(exports.sprite, function(obj, info) {
+        var point = info.data.getLocalPosition(obj.parent);
+        if(exports.sprite.scale.x == -1) {
+          point.x = exports.sprite.width - point.x;
+        }
+
+        var offset = ((point.y-1) * exports.sprite.width) + point.x;
+
+        var letterInfos = TXP.TanachData.Books.GetLetterInfos();
+
+        console.log("point: " + point.x + "," + point.y + " offset: " + offset);
+        var info = letterInfos[offset];
+        msg = "";
+        msg += TXP.TanachData.SeparateBooks.niceNames[info.book];
+
+        msg += "\nVerse " + info.pasuk;
+        msg += "\nWord " + info.word;
+        msg += "\nLetter " + info.letter;
+        alert(msg);
+      });
   }
 
   exports.Controls = {

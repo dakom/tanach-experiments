@@ -1,5 +1,8 @@
 var LETTERS_PALETTE = (function(exports) {
     function allReady() {
+      exports.allLetters = TXP.TanachData.Books.GetAllLetters();
+      exports.allWords = TXP.TanachData.Books.GetAllWords();
+      
       TXP.Init(window.innerWidth,LETTERS_PALETTE.GetTextureHeight(window.innerWidth), LETTERS_PALETTE.configOptions.bgColor);
       lettersTexture = LETTERS_PALETTE.GetLettersTexture(TXP.canvasWidth);
 
@@ -53,7 +56,7 @@ var LETTERS_PALETTE = (function(exports) {
 
         var loadingGateLocked = 2;
 
-        TXP.TanachData.Letters.Load({
+        TXP.TanachData.Books.Load({
           onComplete: function () {
 
             if(!--loadingGateLocked) {

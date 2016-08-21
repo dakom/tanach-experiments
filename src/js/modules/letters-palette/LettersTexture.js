@@ -1,12 +1,12 @@
 var LETTERS_PALETTE = (function(exports) {
     function GetTextureHeight(textureWidth) {
-      return Math.ceil(TXP.TanachData.Letters.GetData().length / textureWidth);
+      return Math.ceil(exports.allLetters.length / textureWidth);
     }
 
     exports.GetTextureHeight = GetTextureHeight;
 
     exports.GetLettersTexture = function(textureWidth) {
-        var letters = TXP.TanachData.Letters.GetData();
+        var letters = exports.allLetters;
         var textureHeight = GetTextureHeight(textureWidth);
 
         var canvas = document.createElement('canvas');

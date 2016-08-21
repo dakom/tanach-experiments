@@ -42,6 +42,48 @@ var TXP = (function(exports) {
         'divreihayamimii'
     ];
 
+    var niceBookNames = [
+        'Bereishit',
+        'Shmot',
+        'Vayikra',
+        'Bamidbar',
+        'Devarim',
+        'Yehoshua',
+        'Shoftim',
+        'Shmuel I',
+        'Shmuel II',
+        'Melachim I',
+        'Melachim II',
+        'Yishayahu',
+        'Yirmiyahu',
+        'Yechezkiel',
+        'Hosea',
+        'Yoel',
+        'Amos',
+        'Ovadiah',
+        'Yonah',
+        'Micha',
+        'Nachum',
+        'Chabakuk',
+        'Zephaniah',
+        'Chaggai',
+        'Zechariah',
+        'Malachai',
+        'Tehillim',
+        'Mishlei',
+        'Iyov',
+        'Shir HaShirim',
+        'Ruth',
+        'Eicha',
+        'Kohelet',
+        'Esther',
+        'Daniel',
+        'Ezra',
+        'Nechemia',
+        'Divreihayamim I',
+        'Divreihayamim II'
+    ];
+
     function Load(callbacks) {
         loader = new PIXI.loaders.Loader();
         for (var i = 0; i < bookNames.length; i++) {
@@ -144,7 +186,8 @@ var TXP = (function(exports) {
       GetCombined: GetCombined,
       GetConfig: GetConfig,
       GetFlattened: GetFlattened,
-      names: bookNames
+      names: bookNames,
+      niceNames: niceBookNames
     }
 
     return exports;

@@ -1,6 +1,9 @@
 var TXP = (function(exports) {
     var loader;
     var flatData;
+    var allLetters;
+    var allWords;
+    var letterInfos;
 
     function Load(callbacks) {
         loader = new PIXI.loaders.Loader();
@@ -33,61 +36,80 @@ var TXP = (function(exports) {
     }
 
     function GetAllLetters() {
+        if (allLetters === undefined) {
+            letterInfos = [];
 
-      ret = [];
-      var allData = GetData();
-      bookMax = allData.length;
-      for(var i = 0; i < bookMax; i++) {
+            allLetters = [];
+            var allData = GetData();
+            bookMax = allData.length;
+            for (var i = 0; i < bookMax; i++) {
 
-          var bookData = allData[i];
-          for (var p = 0; p < bookData.length; p++) {
-              var pasuk = bookData[p];
+                var bookData = allData[i];
+                for (var p = 0; p < bookData.length; p++) {
+                    var pasuk = bookData[p];
 
-              for (var w = 0; w < pasuk.length; w++) {
-                  var word = pasuk[w];
+                    for (var w = 0; w < pasuk.length; w++) {
+                        var word = pasuk[w];
 
-                  for (var l = 0; l < word.length; l++) {
-                      var letter = word[l];
-                      ret.push(letter);
-                  }
-              }
-          }
-      }
+                        for (var l = 0; l < word.length; l++) {
+                            var letter = word[l];
+                            allLetters.push(letter);
+                            letterInfos.push({
+                              book: i,
+                              pasuk: p,
+                              word: w,
+                              letter: l
+                            });
+                        }
+                    }
+                }
+            }
+        }
 
-      return ret;
+
+
+        return allLetters;
 
 
     }
+
+
 
     function GetAllWords(style) {
+        if (allWords === undefined) {
+            allWords = [];
+            var allData = GetData();
+            bookMax = allData.length;
+            for (var i = 0; i < bookMax; i++) {
 
-      ret = [];
-      var allData = GetData();
-      bookMax = allData.length;
-      for(var i = 0; i < bookMax; i++) {
+                var bookData = allData[i];
+                for (var p = 0; p < bookData.length; p++) {
+                    var pasuk = bookData[p];
 
-          var bookData = allData[i];
-          for (var p = 0; p < bookData.length; p++) {
-              var pasuk = bookData[p];
+                    for (var w = 0; w < pasuk.length; w++) {
+                        var word = pasuk[w];
+                        allWords.push(word);
 
-              for (var w = 0; w < pasuk.length; w++) {
-                  var word = pasuk[w];
-                  ret.push(word);
+                    }
+                }
+            }
+        }
 
-              }
-          }
-      }
-
-      return ret;
+        return allWords;
     }
 
+    function GetLetterInfos() {
+        GetAllLetters();
 
+        return letterInfos;
+    }
 
     exports.TanachData.Books = {
-      Load: Load,
-      GetData: GetData,
-      GetAllLetters: GetAllLetters,
-      GetAllWords: GetAllWords,
+        Load: Load,
+        GetData: GetData,
+        GetAllLetters: GetAllLetters,
+        GetAllWords: GetAllWords,
+        GetLetterInfos: GetLetterInfos,
     }
 
     return exports;
