@@ -1,10 +1,12 @@
 ### OFFLINE NON-GIT STUFF (video renders etc.)
 NonGit/
+
 ### BUILDS
 
 dist/
 dev/
 *-dev.html
+src/*.html
 
 ###NODE
 # Logs
