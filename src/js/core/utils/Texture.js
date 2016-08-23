@@ -1,15 +1,7 @@
 TXP = (function(exports) {
-  function CreateSolidTexture(textureWidth, textureHeight, rgba) {
-    var len = Math.ceil((textureWidth * textureHeight));
-    var rgbaData = [];
-    for(var i = 0; i < len; i++) {
-      rgbaData[i] = {r: rgba.r, g: rgba.g, b: rgba.g, a: rgba.a};
-    }
 
-    return CreateTextureFromData(textureWidth, textureHeight, rgbaData);
-  }
 
-  function CreateTextureFromData(textureWidth, textureHeight, rgbaData) {
+  function Create(textureWidth, textureHeight, rgbaData,  callbackWithData) {
       var canvas = document.createElement('canvas');
       canvas.width = textureWidth;
       canvas.height = textureHeight;
@@ -33,12 +25,53 @@ TXP = (function(exports) {
           imgData.data[i++] =  rgba.a; //alpha channel - maybe signify start of word, start of pasuk, start of book, etc.
       }
       ctx.putImageData(imgData, 0, 0);
+
+      if( callbackWithData !== undefined) {
+         callbackWithData(imgData);
+      }
+
       return PIXI.Texture.fromCanvas(canvas);
   }
 
+  function CreateSolid(textureWidth, textureHeight, rgba,  callbackWithData) {
+    var len = Math.ceil((textureWidth * textureHeight));
+    var rgbaData = [];
+    for(var i = 0; i < len; i++) {
+      rgbaData[i] = {r: rgba.r, g: rgba.g, b: rgba.g, a: rgba.a};
+    }
+
+    return Create(textureWidth, textureHeight, rgbaData,  callbackWithData);
+  }
+
+  function CreateNumbers(textureWidth, textureHeight, arrayOfNumbers, callbackWithData) {
+    var rgbaData = [];
+
+
+    //split the value across RGB
+    //0xFF is 8 bits, so red is shifted 8x2 bits (and masked with 8 bits), green is 8, blue is not shifted
+    //it seems that alpha must be 0xFF for this to work and therefore can't be used to expand max val. Not sure why yet (pre-multiplied?)
+    //max val is therefore 0xFFFFFF or 16777215
+
+    for(var i = 0; i < arrayOfNumbers.length; i++) {
+      var num = arrayOfNumbers[i];
+
+      rgbaData.push({
+        r: ((num >> 16) & 0xFF), //red
+        g: ((num >> 8) & 0xFF), //green
+        b: (num & 0xFF), //blue
+        a: 0xFF //can't pass data here, seems to be pre-multipled or something
+      });
+    }
+
+    return Create(textureWidth, textureHeight, rgbaData, callbackWithData);
+  }
+
+
+
     exports.Utils.Texture = {
-      CreateTextureFromData: CreateTextureFromData,
-      CreateSolidTexture: CreateSolidTexture
+      Create: Create,
+      CreateNumbers: CreateNumbers,
+      CreateSolid: CreateSolid
     }
 
     return exports;

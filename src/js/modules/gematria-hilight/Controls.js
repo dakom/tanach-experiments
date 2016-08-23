@@ -1,6 +1,6 @@
 var GEMATRIA_HILIGHT = (function(exports) {
   function SetGematria(val) {
-      exports.filter.gematria = val;
+      exports.filter.numberValue = val;
       if(GEMATRIA_HILIGHT.Animation.IsColorChange() == true) {
         var newColor = [
           Math.random(),
@@ -19,8 +19,8 @@ var GEMATRIA_HILIGHT = (function(exports) {
             newColor[2] += 0.5;
           }
         }
-        exports.filter.hilightColor = newColor;
-
+        exports.filter.matchColor = newColor;
+        
 
       }
 
