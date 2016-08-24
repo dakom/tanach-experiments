@@ -2,18 +2,19 @@
 precision mediump float;
 
 uniform sampler2D uSampler;
-uniform float gematriaHigh;
-uniform float gematriaLow;
-uniform vec4 hilightColor;
+uniform float rVal;
+uniform float gVal;
+uniform float bVal;
+uniform vec4 matchColor;
+uniform vec4 bgColor;
 varying vec2 vTextureCoord;
 
 void main() {
   vec4 colorLookup = texture2D(uSampler, vTextureCoord);
-  vec4 finalColor = vec4(0.0, 0.0, 0.0, 1.0);
 
-  if(colorLookup.r == gematriaHigh && colorLookup.g == gematriaLow) {
-    finalColor = hilightColor;
+  if(colorLookup.r == rVal && colorLookup.g == gVal && colorLookup.b == bVal) {
+    gl_FragColor = matchColor;
+  } else {
+    gl_FragColor = bgColor;
   }
-
-  gl_FragColor = finalColor;
 }

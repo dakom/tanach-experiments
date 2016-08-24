@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device_width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <title>Tanach Viewer - Gematria Hilight</title>
+    <title>Tanach Viewer - Words Hilight</title>
 
     <link rel="stylesheet" type="text/css" href="external-libs/spectrum/spectrum.min.css">
     <!-- inject:css -->
@@ -21,17 +21,17 @@
 
 </head>
 <body>
-  <div style="margin: 10px">
-  <a href="index.html" style="color: blue;">Back to Tanach Experiments</a>
-  <p/>
-    Gematria Value: <input id="gemval" name="gemval" type="text" size=5/>
+    <div style="margin: 10px">
+    <a href="index.html" style="color: blue;">Back to Tanach Experiments</a>
+    <p/>
+    Word Value: <input id="wordval" name="wordval" type="text" size=20/>
 
     <span style="margin-left: 10px">Background:</span> <input id='bgColor' />
     <span style="margin-left: 10px">Match:</span> <input id='matchColor' />
     <span style="margin-left: 10px">Speed:</span> <input type="range" name="speed" id="speed" min="0" max="100">
     <input type="button" id="rewindMode" name="rewindMode" value="Rewind Mode" class="button" />
     <input type="button" id="playMode" name="playMode" value="Pause" class="button" />
-</div>
+  </div>
 
     <p/>
     <script type="text/javascript">
@@ -42,7 +42,7 @@
       $("#matchColor").spectrum({
         color: "#fff"
       });
-      GEMATRIA_HILIGHT.Start({
+      WORD_HILIGHT.Start({
           bgColor: "#ccc",
       });
     }
