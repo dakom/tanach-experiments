@@ -1,8 +1,11 @@
-var GEMATRIA_HILIGHT = (function(exports) {
-  function SetGematria(val) {
-      exports.filter.numberValue = val;
+var WORD_HILIGHT = (function(exports) {
+  function SetWord(hebrewWord) {
+      if(exports.wordLookup.hasOwnProperty(hebrewWord)) {
 
-      $("#gemval").val(val);
+        exports.filter.numberValue = exports.wordLookup[hebrewWord];
+        $("#wordval").val(hebrewWord);
+      }
+
   }
 
   function ResetColors() {
@@ -33,28 +36,27 @@ var GEMATRIA_HILIGHT = (function(exports) {
     });
 
       $("#speed").on('input', function() {
-        GEMATRIA_HILIGHT.Animation.SetSpeed($("#speed").val()/100);
+        WORD_HILIGHT.Animation.SetSpeed($("#speed").val()/100);
       });
 
+      $("#playMode").on('click', function() {
+          WORD_HILIGHT.Animation.TogglePause();
+          $("#playMode").val(WORD_HILIGHT.Animation.IsPaused() ? "Play" : "Pause");
+      });
       $("#rewindMode").on('click', function() {
-          GEMATRIA_HILIGHT.Animation.ToggleRewind();
-          if(GEMATRIA_HILIGHT.Animation.IsRewind()) {
+          WORD_HILIGHT.Animation.ToggleRewind();
+          if(WORD_HILIGHT.Animation.IsRewind()) {
             $("#rewindMode").addClass('selected');
           } else {
             $("#rewindMode").removeClass('selected');
           }
       });
 
-      $("#playMode").on('click', function() {
-          GEMATRIA_HILIGHT.Animation.TogglePause();
-          $("#playMode").val(GEMATRIA_HILIGHT.Animation.IsPaused() ? "Play" : "Pause");
-      });
+      $("#wordval").on('input', function() {
+        var val = $("#wordval").val();
 
-      $("#gemval").on('input', function() {
-        var val = $("#gemval").val();
-
-        if(val >= exports.minGematria && val <= exports.maxGematria) {
-          SetGematria(val);
+        if(exports.wordLookup.hasOwnProperty(val)) {
+          SetWord(val);
         }
 
       });
@@ -83,9 +85,9 @@ var GEMATRIA_HILIGHT = (function(exports) {
   }
 
   exports.Controls = {
-    SetGematria: SetGematria,
+    SetWord: SetWord,
     Start: Start,
     ResetColors: ResetColors,
   }
   return exports;
-}(GEMATRIA_HILIGHT || {}));
+}(WORD_HILIGHT || {}));

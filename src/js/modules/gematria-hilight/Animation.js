@@ -2,7 +2,7 @@ var GEMATRIA_HILIGHT = (function(exports) {
   var filter;
   var ticker;
   var currentGematria;
-
+var isRewind = false;
   var isPaused = false;
   var speedLimit;
   var speedCount = 0.0;
@@ -22,7 +22,7 @@ var GEMATRIA_HILIGHT = (function(exports) {
   }
 
   function SetSpeed(speedPerc) {
-    speedLimit = speedPerc * maxSpeedRange;
+    speedLimit = maxSpeedRange - (speedPerc * maxSpeedRange);
   }
 
   function onTickEvent( deltaTime ) {
@@ -33,9 +33,16 @@ var GEMATRIA_HILIGHT = (function(exports) {
     speedCount += deltaTime;
     if(speedCount > speedLimit) {
       speedCount = 0;
-      if(++currentGematria > exports.maxGematria) {
-        currentGematria = exports.minGematria;
+      if (isRewind) {
+        if(--currentGematria < exports.minGematria) {
+          currentGematria = exports.maxGematria;
+        }
+      } else {
+        if(++currentGematria > exports.maxGematria) {
+          currentGematria = exports.minGematria;
+        }
       }
+
       GEMATRIA_HILIGHT.Controls.SetGematria(currentGematria);
     }
 
@@ -51,6 +58,12 @@ var GEMATRIA_HILIGHT = (function(exports) {
       TogglePause: function() {
         isPaused = !isPaused;
       },
+      ToggleRewind: function() {
+          isRewind = !isRewind;
+      },
+      IsRewind: function() {
+          return isRewind;
+      }
 
     }
       return exports;

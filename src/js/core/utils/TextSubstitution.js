@@ -40,6 +40,14 @@ TXP = (function(exports) {
         ]
     };
 
+    exports.Utils.TextSubstitution.GetTextFromArray = function(word) {
+      var str = '';
+      for(var i = 0; i < word.length; i++) {
+        str += exports.Utils.TextSubstitution.TEXT_HEBREW[word[i]];
+      }
+
+      return str;
+    }
     return exports;
 
 }(TXP || {

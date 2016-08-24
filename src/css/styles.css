@@ -21,3 +21,8 @@ canvas {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.selected {
+    background-color: green;
+    color: white;
+}
