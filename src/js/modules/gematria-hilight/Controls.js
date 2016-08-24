@@ -1,59 +1,48 @@
 var GEMATRIA_HILIGHT = (function(exports) {
   function SetGematria(val) {
       exports.filter.numberValue = val;
-      if(GEMATRIA_HILIGHT.Animation.IsColorChange() == true) {
-        var newColor = [
-          Math.random(),
-          Math.random(),
-          Math.random(),
-          1.0
-        ];
 
-        if(newColor[0] < 0.5 && newColor[1] < 0.5 && newColor[2] < 0.5) {
-          var coinToss = Math.random();
-          if(coinToss < 0.3) {
-            newColor[0] += 0.5;
-          } else if(coinToss < 0.6) {
-            newColor[1] += 0.5;
-          } else {
-            newColor[2] += 0.5;
-          }
-        }
-        exports.filter.matchColor = newColor;
-        
-
-      }
-
-      $("#gemval").text(val);
+      $("#gemval").val(val);
   }
 
+  function ResetColors() {
+    exports.filter.bgColor = parseInt($("#bgColor").spectrum("get").toHex(), 16);
+    exports.filter.matchColor = parseInt($("#matchColor").spectrum("get").toHex(), 16);
+
+  }
   function Start() {
+    ResetColors();
+
+    $("#bgColor").on('move.spectrum', ResetColors);
+    $("#matchColor").on('move.spectrum', ResetColors);
+    $("#bgColor").on('change.spectrum', ResetColors);
+    $("#matchColor").on('change.spectrum', ResetColors);
+
     window.addEventListener("keydown", function(key) {
         var keyCode = key.keyCode;
 
         switch(keyCode) {
-          case 32: //space
-            GEMATRIA_HILIGHT.Animation.TogglePause();
-            break;
-            case 38: //up
-            GEMATRIA_HILIGHT.Animation.Faster();
-              break;
-            case 40: //down
-              GEMATRIA_HILIGHT.Animation.Slower();
-              break;
+
               case 70: //f
                 exports.sprite.scale.x *= -1; //flip sprite horizontal
                 break;
-            case 67:
-              GEMATRIA_HILIGHT.Animation.ToggleColorLock();
-              break;
+
           default:
             break;
         }
     });
 
-      $("#ingem").on('input', function() {
-        var val = $("#ingem").val();
+      $("#speed").on('input', function() {
+        GEMATRIA_HILIGHT.Animation.SetSpeed($("#speed").val()/100);
+      });
+
+      $("#playMode").on('click', function() {
+          GEMATRIA_HILIGHT.Animation.TogglePause();
+          $("#playMode").val(GEMATRIA_HILIGHT.Animation.IsPaused() ? "Play" : "Pause");
+      });
+
+      $("#gemval").on('input', function() {
+        var val = $("#gemval").val();
 
         if(val >= exports.minGematria && val <= exports.maxGematria) {
           SetGematria(val);
@@ -86,7 +75,8 @@ var GEMATRIA_HILIGHT = (function(exports) {
 
   exports.Controls = {
     SetGematria: SetGematria,
-    Start: Start
+    Start: Start,
+    ResetColors: ResetColors,
   }
   return exports;
 }(GEMATRIA_HILIGHT || {}));

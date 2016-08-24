@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device_width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>Tanach Viewer - Gematria Hilight</title>
 
+    <link rel="stylesheet" type="text/css" href="external-libs/spectrum/spectrum.min.css">
     <!-- inject:css -->
     <!-- endinject -->
     <script src="external-libs/jquery/jquery-1.12.4.min.js"></script>
   <script src="external-libs/pixi/pixi.min.js"></script>
   <script src="external-libs/kittykatattack/scaleToWindow/scaleToWindow.js"></script>
+  <script src="external-libs/spectrum/spectrum.min.js"></script>
     <!-- inject:js -->
     <!-- endinject -->
 
@@ -18,14 +20,23 @@
 <body>
 
     <br/>
-    <table width="100%" border="0" style="font-size: x-large">
-      <tr align="center"><td align="right">Gematria Value:&nbsp;&nbsp;</td><td align="left"><span id="gemval" /></td></tr>
+    Gematria Value: <input id="gemval" name="gemval" type="text" size=5/>
 
-      <tr align="center"><td align="right">Change:&nbsp;&nbsp;</td><td align="left"><input id="ingem" name="ingem" type="text" /></td></tr>
-    </table>
+    <span style="margin-left: 10px">Background:</span> <input id='bgColor' />
+    <span style="margin-left: 10px">Match:</span> <input id='matchColor' />
+    <span style="margin-left: 10px">Speed:</span> <input type="range" name="speed" id="speed" min="0" max="100">
+    <input type="button" id="playMode" name="playMode" value="Pause" class="button" />
+
+
     <p/>
     <script type="text/javascript">
     window.onload = function() {
+      $("#bgColor").spectrum({
+        color: "#7A1111"
+      });
+      $("#matchColor").spectrum({
+        color: "#fff"
+      });
       GEMATRIA_HILIGHT.Start({
           bgColor: "#ccc",
       });

@@ -4,22 +4,25 @@ var GEMATRIA_HILIGHT = (function(exports) {
   var currentGematria;
 
   var isPaused = false;
-  var speedLimit = 5.0;
+  var speedLimit;
   var speedCount = 0.0;
-  var colorChange = true;
-
+  var maxSpeedRange = 50;
 
 
   function Start() {
     filter = exports.filter;
-
+    SetSpeed(.5);
 
     currentGematria = exports.minGematria;
-    GEMATRIA_HILIGHT.Controls.SetGematria(exports.minGematria, colorChange);
+    GEMATRIA_HILIGHT.Controls.SetGematria(exports.minGematria);
 
     ticker = new PIXI.ticker.Ticker();
     ticker.add(onTickEvent);
     ticker.start();
+  }
+
+  function SetSpeed(speedPerc) {
+    speedLimit = speedPerc * maxSpeedRange;
   }
 
   function onTickEvent( deltaTime ) {
@@ -33,7 +36,7 @@ var GEMATRIA_HILIGHT = (function(exports) {
       if(++currentGematria > exports.maxGematria) {
         currentGematria = exports.minGematria;
       }
-      GEMATRIA_HILIGHT.Controls.SetGematria(currentGematria, colorChange);
+      GEMATRIA_HILIGHT.Controls.SetGematria(currentGematria);
     }
 
 	}
@@ -41,30 +44,14 @@ var GEMATRIA_HILIGHT = (function(exports) {
 
     exports.Animation = {
       Start: Start,
+      SetSpeed: SetSpeed,
+      IsPaused: function() {
+        return isPaused;
+      },
       TogglePause: function() {
         isPaused = !isPaused;
       },
 
-      ToggleColorLock: function() {
-        colorChange = !colorChange;
-      },
-
-      IsColorChange: function() {
-        return colorChange
-      },
-
-      Faster: function() {
-        speedLimit -= 1.0;
-        if(speedLimit < 0) {
-          speedLimit = 0;
-        }
-      },
-      Slower: function() {
-        speedLimit += 1.0;
-        if(speedLimit > 100) {
-          speedLimit = 100;
-        }
-      },
     }
       return exports;
 }(GEMATRIA_HILIGHT || {}));

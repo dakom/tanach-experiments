@@ -33,7 +33,6 @@ var GEMATRIA_HILIGHT = (function(exports) {
       exports.sprite.scale.x *= -1; //flip horizontal... right to left I guess
 
       exports.filter = new TXP.Shaders.MatchValueFilter();
-      exports.filter.bgColor = [0.0, 0.0, 0.0, 1.0];
       exports.sprite.filters = [exports.filter];
 
       TXP.stage.addChild(exports.sprite);

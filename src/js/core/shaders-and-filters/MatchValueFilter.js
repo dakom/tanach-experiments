@@ -17,7 +17,7 @@ var TXP = (function(exports) {
               value: [1.0, 1.0, 1.0, 1.0]
             },
             bgColor: {
-              value: [0.5, 0.5, 0.5, 1.0]
+              value: [0.0, 0.0, 0.0, 1.0]
             }
           }
         );
@@ -45,22 +45,24 @@ var TXP = (function(exports) {
                 this.uniforms.bVal = (value & 0xFF) / 0xFF;
             }
         },
+
         matchColor: {
             get: function() {
-                return this.uniforms.matchColor;
+                return PIXI.utils.rgb2hex(this.uniforms.matchColor);
             },
             set: function(value) {
-                this.uniforms.matchColor = value;
+                this.uniforms.matchColor = PIXI.utils.hex2rgb(value);
             }
         },
+
         bgColor: {
-            get: function() {
-                return this.uniforms.bgColor;
-            },
-            set: function(value) {
-                this.uniforms.bgColor = value;
-            }
-        }
+          get: function() {
+              return PIXI.utils.rgb2hex(this.uniforms.bgColor);
+          },
+          set: function(value) {
+              this.uniforms.bgColor = PIXI.utils.hex2rgb(value);
+          }
+        },
     });
 
     exports.Shaders.MatchValueFilter = MatchValueFilter;
