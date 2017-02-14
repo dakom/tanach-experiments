@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device_width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+  <title>Tanach Viewer - Sound Instrument</title>
+
+  <!-- inject:css -->
+  <!-- endinject -->
+  <script src="external-libs/jquery/jquery-1.12.4.min.js"></script>
+
+  <script src="external-libs/pixi/pixi.min.js"></script>
+  <script src="external-libs/audiosynth/audiosynth.js"></script>
+  <!-- inject:js -->
+  <!-- endinject -->
+
+</head>
+<body>
+<div style="margin: 10px">
+  <a href="index.html" style="color: blue;">Back to Tanach Experiments</a>
+  <p/>
+  <i>Note - duration and auto-timing are currently random</i>
+  <p/>
+  <button id="stop" style="width: 200px; height: 50px">STOP</button>
+  <input type="button" id="gematriaMode" name="gematriaMode" value="Gematria Mode" class="button" />
+  <input type="button" id="autoPlayMode" name="autoPlayMode" value="AutoPlay Mode" class="button selected"  />
+
+  <p/>
+  <button id="playLetters" style="width: 200px; height: 50px">START LETTERS</button>
+  <button id="playWords" style="width: 200px; height: 50px">START WORDS</button>
+  <button id="playMiluiWords" style="width: 200px; height: 50px">START MILUI WORDS</button>
+  <button id="playMiluiLetters" style="width: 200px; height: 50px">START MILUI LETTERS</button>
+  <button id="playLettersBreaks" style="width: 200px; height: 50px">START LETTERS WITH BREAKS</button>
+  <p/>&nbsp;<p/>
+  <input type="button" id="playNextSound" name="playNextSound" value="Play Next Sound (manual only)" class="button" />
+
+  <div id="status" />
+</div>
+<script type="text/javascript">
+    window.onload = function() {
+        SOUND_INSTRUMENT.Start();
+    }
+
+</script>
+</body>
+</html>

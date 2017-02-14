@@ -1,5 +1,6 @@
-var SOUND_BUFFER = (function(exports) {
+var SOUND_INSTRUMENT = (function(exports) {
     var gematriaMode = false;
+    var autoPlayMode = true;
 
     function playWords() {
 
@@ -51,29 +52,36 @@ var SOUND_BUFFER = (function(exports) {
 
 
         for(var i = 0; i < targetSet.length; i++) {
-            var val;
+            var val = {};
 
             if(gematriaMode) {
-                val = TXP.Utils.Gematria.CountData(targetSet[i]);
+                val.num = TXP.Utils.Gematria.CountData(targetSet[i]);
             } else {
-                val = TXP.Utils.Gematria.CountData(targetSet[i], {skipGematria: true});
+                val.num = TXP.Utils.Gematria.CountData(targetSet[i], {skipGematria: true});
             }
 
-            vals.push(val);
-            if(maxVal == -1 || val > maxVal) {
-               maxVal = val;
+            if(i < 3) {
+                console.log(targetSet[i]);
+                console.log(TXP.Utils.TextSubstitution.GetText(targetSet[i]));
             }
-            if(minVal == -1 || val <  minVal) {
-                minVal = val;
+            val.text = TXP.Utils.TextSubstitution.GetText(targetSet[i]),
+
+            vals.push(val);
+            if(maxVal == -1 || val.num > maxVal) {
+                maxVal = val.num;
+            }
+            if(minVal == -1 || val.num <  minVal) {
+                minVal = val.num;
             }
         };
 
 
         AudioInstrument.PlayAudio({
-        maxVal: maxVal,
-        minVal: minVal,
-        vals: vals}
-        );
+            maxVal: maxVal,
+            minVal: minVal,
+            vals: vals,
+            autoPlayMode: autoPlayMode
+        });
 
 
     }
@@ -89,6 +97,24 @@ var SOUND_BUFFER = (function(exports) {
             }
             AudioInstrument.StopAudio();
         });
+
+        $("#autoPlayMode").on('click', function() {
+            autoPlayMode = !autoPlayMode;
+            if(autoPlayMode) {
+                $("#autoPlayMode").addClass('selected');
+            } else {
+                $("#autoPlayMode").removeClass('selected');
+            }
+            AudioInstrument.StopAudio();
+        });
+
+        $("#playNextSound").on('click', function() {
+            if(!autoPlayMode) {
+              AudioInstrument.PlayNextSound();
+            }
+        });
+
+        $("#playNextSound").hide();
 
         AudioInstrument.Setup();
 
@@ -124,4 +150,4 @@ var SOUND_BUFFER = (function(exports) {
     }
 
     return exports;
-}(SOUND_BUFFER || {}));
+}(SOUND_INSTRUMENT || {}));

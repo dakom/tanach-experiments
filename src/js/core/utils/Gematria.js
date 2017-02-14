@@ -5,7 +5,7 @@ TXP = (function(exports) {
             opts = {};
         }
         for(var i = 0; i < data.length; i++) {
-            ret += CountHebLetter(data[i], opts);
+            ret += CountData(data[i], opts);
         }
 
         return ret;
@@ -18,6 +18,11 @@ TXP = (function(exports) {
         }
 
         var hVal = data;
+
+        if(opts.skipGematria === true) {
+            return hVal;
+        }
+
         if(opts.sofit !== true) {
             return TXP.Utils.TextSubstitution.GEMATRIA_ABSOLUTE[hVal];
         } else {
@@ -27,15 +32,17 @@ TXP = (function(exports) {
         return 0;
     }
 
+    function CountData(data, opts) {
+        if (data.constructor === Array) {
+            return CountHebArray(data, opts);
+        } else {
+            return CountHebLetter(data, opts);
+        }
+    }
+
     exports.Utils.Gematria = {
 
-      CountData: function(data, opts) {
-          if(data.constructor === Array) {
-              return CountHebArray(data, opts);
-          } else {
-              return CountHebLetter(data, opts);
-          }
-      },
+      CountData: CountData,
 
         CountHebLetter: CountHebLetter,
       CountHebArray: CountHebArray
