@@ -48,6 +48,24 @@ TXP = (function(exports) {
 
       return str;
     }
+
+    exports.Utils.TextSubstitution.GetMilui = function(word) {
+        var ret = [];
+
+        for(var letterIndex = 0; letterIndex < word.length; letterIndex++) {
+            var letter = word[letterIndex];
+            if(letter == 0) {
+                ret.push(0);
+            } else {
+                var letterMilui = exports.Utils.TextSubstitution.MILUI_OPTIONS[letter][0];
+                for(var i = 0; i < letterMilui.length; i++) {
+                    ret.push(letterMilui[i]);
+                }
+            }
+        }
+
+        return ret;
+    }
     return exports;
 
 }(TXP || {
