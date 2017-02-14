@@ -17,7 +17,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-glslify": "git+https://github.com/yuichiroharai/gulp-glslify.git",
-    "gulp-inject": "^4.1.0",
+    "gulp-inject": "^4.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.9",

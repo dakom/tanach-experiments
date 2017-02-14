@@ -64,6 +64,8 @@ var NaturalAudioInstrument = (function(exports) {
         htmlText += "Current index: " + musicIndex;
         htmlText += "<br/>";
         htmlText += musicInfo.text;
+        htmlText += "<br/>";
+        htmlText += "Note " + musicInfo.note + " octave #" + (musicInfo.octave+1);
 
         status.innerHTML = htmlText;
 
@@ -79,21 +81,33 @@ var NaturalAudioInstrument = (function(exports) {
         musicData = [];
         var timing = 0;
 
+        var coreNotes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+        var maxOctaves = 8;
+        var notes = [];
+
+        for(var octave = 0; octave < maxOctaves; octave++) {
+            for(var i = 0; i < coreNotes.length; i++) {
+                notes.push({
+                    note: coreNotes[i],
+                    octave: octave
+                });
+            }
+
+        }
         for(var i = 0; i < config.vals.length; i++) {
-            var notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+
 
             var val = config.vals[i].num;
             var text = config.vals[i].text;
-            var note = notes[Math.round(normalizeToScale(val, config.minVal, config.maxVal, 0, notes.length-1))];
-            var octave = Math.round(normalizeToScale(val, config.minVal, config.maxVal, 1, 4))
+            var noteInfo = notes[Math.round(normalizeToScale(val, config.minVal, config.maxVal, 0, notes.length-1))];
             var duration = Math.random() * 3;
             timing += Math.random() * 1000;
 
             musicInfo = {
                 val: val,
                 text: text,
-                note: note,
-                octave: octave,
+                note: noteInfo.note,
+                octave: noteInfo.octave,
                 duration: duration,
                 timing: timing,
 
