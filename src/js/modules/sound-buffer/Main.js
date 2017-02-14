@@ -69,7 +69,7 @@ var SOUND_BUFFER = (function(exports) {
         };
 
 
-        AudioInstrument.PlayAudio({
+        RawAudioInstrument.PlayAudio({
         maxVal: maxVal,
         minVal: minVal,
         vals: vals}
@@ -87,10 +87,10 @@ var SOUND_BUFFER = (function(exports) {
             } else {
                 $("#gematriaMode").removeClass('selected');
             }
-            AudioInstrument.StopAudio();
+            RawAudioInstrument.StopAudio();
         });
 
-        AudioInstrument.Setup();
+        RawAudioInstrument.Setup();
 
         var button = document.getElementById('playLetters');
         button.onclick = playLetters;
@@ -103,7 +103,7 @@ var SOUND_BUFFER = (function(exports) {
         var button = document.getElementById('playLettersBreaks');
         button.onclick = playLettersBreaks;
         var button = document.getElementById('stop');
-        button.onclick = AudioInstrument.StopAudio;
+        button.onclick = RawAudioInstrument.StopAudio;
     }
 
 

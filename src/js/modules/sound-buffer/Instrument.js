@@ -1,4 +1,4 @@
-var AudioInstrument = (function(exports) {
+var RawAudioInstrument = (function(exports) {
 
     var audioCtx = null;
     var audioSource = null;
@@ -98,4 +98,4 @@ var AudioInstrument = (function(exports) {
     }
 
     return exports;
-}(AudioInstrument || {}));
+}(RawAudioInstrument || {}));

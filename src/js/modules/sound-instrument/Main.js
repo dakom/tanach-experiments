@@ -76,7 +76,7 @@ var SOUND_INSTRUMENT = (function(exports) {
         };
 
 
-        AudioInstrument.PlayAudio({
+        NaturalAudioInstrument.PlayAudio({
             maxVal: maxVal,
             minVal: minVal,
             vals: vals,
@@ -95,7 +95,7 @@ var SOUND_INSTRUMENT = (function(exports) {
             } else {
                 $("#gematriaMode").removeClass('selected');
             }
-            AudioInstrument.StopAudio();
+            NaturalAudioInstrument.StopAudio();
         });
 
         $("#autoPlayMode").on('click', function() {
@@ -105,18 +105,18 @@ var SOUND_INSTRUMENT = (function(exports) {
             } else {
                 $("#autoPlayMode").removeClass('selected');
             }
-            AudioInstrument.StopAudio();
+            NaturalAudioInstrument.StopAudio();
         });
 
         $("#playNextSound").on('click', function() {
             if(!autoPlayMode) {
-              AudioInstrument.PlayNextSound();
+                NaturalAudioInstrument.PlayNextSound();
             }
         });
 
         $("#playNextSound").hide();
 
-        AudioInstrument.Setup();
+        NaturalAudioInstrument.Setup();
 
         var button = document.getElementById('playLetters');
         button.onclick = playLetters;
@@ -129,7 +129,7 @@ var SOUND_INSTRUMENT = (function(exports) {
         var button = document.getElementById('playLettersBreaks');
         button.onclick = playLettersBreaks;
         var button = document.getElementById('stop');
-        button.onclick = AudioInstrument.StopAudio;
+        button.onclick = NaturalAudioInstrument.StopAudio;
     }
 
 

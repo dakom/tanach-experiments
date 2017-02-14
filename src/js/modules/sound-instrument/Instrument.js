@@ -1,4 +1,4 @@
-var AudioInstrument = (function(exports) {
+var NaturalAudioInstrument = (function(exports) {
 
     var requireButton = false;
     var updateIntervalId = null;
@@ -126,4 +126,4 @@ var AudioInstrument = (function(exports) {
     }
 
     return exports;
-}(AudioInstrument || {}));
+}(NaturalAudioInstrument || {}));
