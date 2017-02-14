@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="068e92d2-a4ca-49f2-ae39-323af69d97e3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/module-templates/sound-instrument.html" afterPath="$PROJECT_DIR$/src/html/module-templates/sound-instrument.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/modules/sound-instrument/Instrument.js" afterPath="$PROJECT_DIR$/src/js/modules/sound-instrument/Instrument.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/modules/sound-instrument/Main.js" afterPath="$PROJECT_DIR$/src/js/modules/sound-instrument/Main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,24 +23,44 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Instrument.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Instrument.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/modules/sound-instrument/Instrument.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="67" column="30" lean-forward="false" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+            <state relative-caret-position="244">
+              <caret line="80" column="31" lean-forward="false" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sound-instrument.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sound-instrument.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/html/module-templates/sound-instrument.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+            <state relative-caret-position="176">
+              <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
               <folding>
-                <element signature="e#1551#1557#1" expanded="true" />
+                <element signature="e#1723#1729#1" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controls.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/modules/gematria-hilight/Controls.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="36" column="9" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="36" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/modules/sound-instrument/Main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,6 +88,9 @@
       <find>$(&quot;#playNextSound&quot;).</find>
       <find>Instrument.</find>
       <find>AudioInstrument.</find>
+      <find>autoPlay</find>
+      <find>lastTiming</find>
+      <find>console.log</find>
     </findStrings>
     <replaceStrings>
       <replace>audioCtx</replace>
@@ -86,11 +109,11 @@
         <option value="$PROJECT_DIR$/src/html/module-templates/sound-buffer.html" />
         <option value="$PROJECT_DIR$/src/js/core/utils/Gematria.js" />
         <option value="$PROJECT_DIR$/src/js/core/utils/TextSubstitution.js" />
-        <option value="$PROJECT_DIR$/src/js/modules/sound-instrument/Main.js" />
         <option value="$PROJECT_DIR$/src/js/modules/sound-buffer/Instrument.js" />
         <option value="$PROJECT_DIR$/src/js/modules/sound-buffer/Main.js" />
-        <option value="$PROJECT_DIR$/src/html/module-templates/sound-instrument.html" />
+        <option value="$PROJECT_DIR$/src/js/modules/sound-instrument/Main.js" />
         <option value="$PROJECT_DIR$/src/js/modules/sound-instrument/Instrument.js" />
+        <option value="$PROJECT_DIR$/src/html/module-templates/sound-instrument.html" />
       </list>
     </option>
   </component>
@@ -565,12 +588,12 @@
       <workItem from="1487059665030" duration="5764000" />
       <workItem from="1487073078441" duration="6007000" />
       <workItem from="1487079783538" duration="235000" />
-      <workItem from="1487097923021" duration="504000" />
+      <workItem from="1487097923021" duration="2987000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12510000" />
+    <option name="totallyTimeSpent" value="14993000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1609" y="-58" width="1618" height="1248" extended-state="6" />
@@ -660,7 +683,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1551#1557#1" expanded="true" />
+            <element signature="e#1723#1729#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -773,20 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/modules/gematria-hilight/Controls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="45" column="9" lean-forward="true" selection-start-line="38" selection-start-column="6" selection-end-line="45" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/html/module-templates/gematria-hilight.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="69" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -838,29 +847,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/module-templates/gematria-hilight.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="27" column="112" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="112" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/modules/gematria-hilight/Controls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="36" column="9" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="36" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/modules/sound-instrument/Main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="102" column="30" lean-forward="false" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
+        <state relative-caret-position="366">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/modules/sound-instrument/Instrument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="80" column="31" lean-forward="false" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/html/module-templates/sound-instrument.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+        <state relative-caret-position="176">
+          <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
           <folding>
-            <element signature="e#1551#1557#1" expanded="true" />
+            <element signature="e#1723#1729#1" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/modules/sound-instrument/Instrument.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="67" column="30" lean-forward="false" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>

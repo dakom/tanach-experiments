@@ -20,14 +20,15 @@
 <div style="margin: 10px">
   <a href="index.html" style="color: blue;">Back to Tanach Experiments</a>
   <p/>
-  <i>Note - duration and auto-timing are currently random
-  <br/>Values are mapped across 8 octaves</i>
+  <i>Values are mapped across keyboard range, A0 through C8</i>
+
 
   <p/>
   <button id="stop" style="width: 200px; height: 50px">STOP</button>
   <input type="button" id="gematriaMode" name="gematriaMode" value="Gematria Mode" class="button" />
   <input type="button" id="autoPlayMode" name="autoPlayMode" value="AutoPlay Mode" class="button selected"  />
-
+  <div id="speed">Speed:<input type="range" name="speedVal" id="speedVal" min="0" max="100"></div>
+  <div id="duration">Duration:<input type="range" name="durationVal" id="durationVal" min="0" max="100"></div>
   <p/>
   <button id="playLetters" style="width: 200px; height: 50px">START LETTERS</button>
   <button id="playWords" style="width: 200px; height: 50px">START WORDS</button>

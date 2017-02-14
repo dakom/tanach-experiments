@@ -60,10 +60,7 @@ var SOUND_INSTRUMENT = (function(exports) {
                 val.num = TXP.Utils.Gematria.CountData(targetSet[i], {skipGematria: true});
             }
 
-            if(i < 3) {
-                console.log(targetSet[i]);
-                console.log(TXP.Utils.TextSubstitution.GetText(targetSet[i]));
-            }
+
             val.text = TXP.Utils.TextSubstitution.GetText(targetSet[i]),
 
             vals.push(val);
@@ -114,9 +111,19 @@ var SOUND_INSTRUMENT = (function(exports) {
             }
         });
 
-        $("#playNextSound").hide();
+        $("#speedVal").on('input', function() {
+            NaturalAudioInstrument.SetSpeed($("#speedVal").val()/100);
+        });
 
+        $("#durationVal").on('input', function() {
+            NaturalAudioInstrument.SetDuration($("#durationVal").val()/100);
+        });
+
+        $("#playNextSound").hide();
+        $("#speed").hide();
         NaturalAudioInstrument.Setup();
+        NaturalAudioInstrument.SetSpeed($("#speedVal").val()/100);
+        NaturalAudioInstrument.SetDuration($("#durationVal").val()/100);
 
         var button = document.getElementById('playLetters');
         button.onclick = playLetters;

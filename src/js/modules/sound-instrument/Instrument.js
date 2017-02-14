@@ -7,7 +7,11 @@ var NaturalAudioInstrument = (function(exports) {
     var instrument;
     var status;
     var startTiming;
+    var lastTiming;
 
+    var notes;
+    var speedVal;
+    var durationVal;
     //http://stats.stackexchange.com/questions/9478/how-to-normalize-data-to-let-each-feature-lie-between-1-1
     function normalizeToScale(value, vMin, vMax, sMin, sMax, logToConsole) {
 
@@ -23,7 +27,7 @@ var NaturalAudioInstrument = (function(exports) {
 
     function StopAudio() {
         $("#playNextSound").hide();
-
+        $("#speed").hide();
         if(updateIntervalId != null) {
             clearInterval(updateIntervalId);
             updateIntervalId = null;
@@ -40,16 +44,20 @@ var NaturalAudioInstrument = (function(exports) {
             StopAudio();
         } else {
             currentTiming = new Date().getTime() - startTiming;
-
+            var slowestSpeed = 2000;
+            var interval = slowestSpeed - (speedVal * slowestSpeed);
+            var nextTiming = (lastTiming + interval);
 
             var musicInfo = musicData[musicIndex];
-            if(musicInfo.timing < currentTiming) {
+            if(nextTiming < currentTiming) {
                 playSound(musicInfo);
                 musicIndex++;
+                lastTiming = currentTiming;
             }
 
         }
     }
+
 
     function PlayNextSound() {
 
@@ -59,18 +67,23 @@ var NaturalAudioInstrument = (function(exports) {
         }
     }
 
+
     function playSound(musicInfo) {
         var htmlText = '';
         htmlText += "Current index: " + musicIndex;
         htmlText += "<br/>";
         htmlText += musicInfo.text;
         htmlText += "<br/>";
-        htmlText += "Note " + musicInfo.note + " octave #" + (musicInfo.octave+1);
+        htmlText += "Note " + musicInfo.note + ((musicInfo.octave+1).toString());
 
         status.innerHTML = htmlText;
 
+        var longestDuration = 2;
+        var duration = (durationVal * longestDuration);
+
+
         //console.log(musicInfo);
-        instrument.play(musicInfo.note, musicInfo.octave, musicInfo.duration);
+        instrument.play(musicInfo.note, musicInfo.octave, duration);
     }
 
     function PlayAudio(config){
@@ -81,35 +94,19 @@ var NaturalAudioInstrument = (function(exports) {
         musicData = [];
         var timing = 0;
 
-        var coreNotes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-        var maxOctaves = 8;
-        var notes = [];
 
-        for(var octave = 0; octave < maxOctaves; octave++) {
-            for(var i = 0; i < coreNotes.length; i++) {
-                notes.push({
-                    note: coreNotes[i],
-                    octave: octave
-                });
-            }
-
-        }
         for(var i = 0; i < config.vals.length; i++) {
 
 
             var val = config.vals[i].num;
             var text = config.vals[i].text;
             var noteInfo = notes[Math.round(normalizeToScale(val, config.minVal, config.maxVal, 0, notes.length-1))];
-            var duration = Math.random() * 3;
-            timing += Math.random() * 1000;
 
             musicInfo = {
                 val: val,
                 text: text,
                 note: noteInfo.note,
-                octave: noteInfo.octave,
-                duration: duration,
-                timing: timing,
+                octave: noteInfo.octave
 
             };
 
@@ -121,22 +118,60 @@ var NaturalAudioInstrument = (function(exports) {
         };
 
         musicIndex = 0;
+        lastTiming = 0;
         startTiming = new Date().getTime();
 
         if(config.autoPlayMode === true) {
             updateIntervalId = setInterval(update, 1000 / 44100);
             $("#playNextSound").hide();
+            $("#speed").show();
         } else {
             $("#playNextSound").show();
+            $("#speed").hide();
         }
     }
 
     exports.StopAudio = StopAudio;
     exports.PlayAudio = PlayAudio;
     exports.PlayNextSound = PlayNextSound;
+    exports.SetSpeed = function(_speedVal) {
+        speedVal = _speedVal;
+        console.log("Speed changed to " + speedVal);
+    }
+    exports.SetDuration = function(_durationVal) {
+        durationVal = _durationVal;
+        console.log("Duration changed to " + durationVal);
+    }
     exports.Setup = function() {
         status = document.getElementById('status');
         instrument = Synth.createInstrument('piano');
+
+        var coreNotes = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
+
+        notes = [];
+
+        for(var octave = 0; octave < 8; octave++) {
+            for(var i = 0; i < coreNotes.length; i++) {
+                notes.push({
+                    note: coreNotes[i],
+                    octave: octave
+                });
+                if(octave == 7 && i == 3) {
+                    break;
+                }
+            }
+
+        }
+
+        notes.push({
+            note: coreNotes[i],
+            octave: octave
+        });
+
+        for(var i = 0; i < notes.length; i++) {
+            console.log(notes[i].note + " octave " + notes[i].octave);
+        }
+
     }
 
     return exports;
