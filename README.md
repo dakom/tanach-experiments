@@ -1,4 +1,7 @@
 Various experiments with Tanach data
-by David Komer
+
+Uses GPU for fast parallel processing, and so visual representation ;)
+
+There's some sound-based stuff in there too
 
 Live Demo: https://dakom.github.io/tanach-experiments
