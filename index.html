@@ -15,11 +15,15 @@
 			width: 90%;
 			margin: 0 auto;
 		}
-		#list {
-			
+		.list {
+			position: absolute;
 			margin-top: 20px;
 			margin-left: 20px;
-
+		}
+		.list-deeper {
+			position: absolute;
+			margin-top: 50px;
+			margin-left: 50px;
 		}
 		.clear {
 			
@@ -33,7 +37,7 @@
   <p/>
   Live Links:
 
-  <div id="list">
+  <div class="list">
     <h1><u>Eye Candy</u></h1>
     <a href="letters-palette.html">Letters Palette </a> - View all the Tanach letters as colors
     <p/>
@@ -67,7 +71,7 @@
     <b>Letters Palette</b>
     <br>
 
-    <div id="list">
+    <div class="list">
       <b>Keys:</b>
       <p/>
       <table border="0">
@@ -84,7 +88,7 @@
 
       <p/>
       <b>Notes:</b>
-      <div id="list">
+      <div class="list-deeper">
         This experiment colors a pixel for <i>every letter in Tanach</i>
         <p/>You can isolate any particular letter, as well as substitute all the letters according to <i>atbash</i> or <i>albam</i>
         <p/>The color palette begins with random assignments, and animates with random speeds. You can pause it at any time
@@ -94,9 +98,9 @@
       </div>
     </div>
 	<p class="clear" />
-    <div id="list">
+    <div class="list">
       <b>Word Hilight</b>
-      <div id="list">
+      <div class="list">
         <b>Keys:</b>
         <p/>
         <table border="0">
@@ -108,16 +112,16 @@
       </table>
       <p/>
       <b>Notes:</b>
-      <div id="list">
+      <div class="list-deeper">
         This experiment highlights word matches throughout all of Tanach
         <p/>It cycles from the first to last word in Tanach, and will pick up from where it last left off when paused/played
         <p/>Note that currently it only searches per-word, not per-phrase
       </div>
     </div>
 	    <p class="clear" />
-    <div id="list">
+    <div class="list">
       <b>Gematria Hilight</b>
-      <div id="list">
+      <div class="list">
         <b>Keys:</b>
         <p/>
         <table border="0">
@@ -129,7 +133,7 @@
       </table>
       <p/>
       <b>Notes:</b>
-      <div id="list">
+      <div class="list-deeper">
         This experiment highlights gematria matches throughout all of Tanach, starting from lowest to highest and animating through
         <p/>Unlike in the <i>Letters Palette</i>, Sofits are not distinct here (tav-400 is the highest)
         <p/>Note that currently it only searches per-word, not per-phrase
@@ -142,7 +146,7 @@
     <p/>
 
     <b>Notes:</b>
-    <div id="list">
+    <div class="list-deeper">
       <p> Currently set to Sofit-Atbash (gematria of each letter, transposed in atbash, and including the extra value for Sofit's)
     </div>
 
