@@ -1,6 +1,18 @@
 ### OFFLINE NON-GIT STUFF (video renders etc.)
 NonGit/
 
+# rust/wasm
+.wasm
+target
+pkg
+# apps should allow Cargo.lock, but libraries shouldn't. See https://doc.rust-lang.org/cargo/faq.html#why-do-binaries-have-cargolock-in-version-control-but-not-libraries
+# Cargo.lock 
+**/*.rs.bk
+
+# CSV Output
+
+csv-output
+
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
