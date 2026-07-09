@@ -55,7 +55,9 @@ jobs:
           [ "${{ runner.os }}" = "Windows" ] && bin="calculations.exe"
           mkdir "$name"
           cp "target/${{ matrix.target }}/release/$bin" "$name/"
-          tar -czf "$GITHUB_WORKSPACE/$name.tar.gz" "$name"
+          # Write to a relative path (repo root). An absolute Windows path like
+          # D:\a\... makes GNU tar treat the drive colon as a remote host.
+          tar -czf "../../$name.tar.gz" "$name"
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}
