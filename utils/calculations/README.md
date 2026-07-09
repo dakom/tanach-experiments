@@ -13,19 +13,18 @@ sofit forms counting as their base letter.
 The dataset is embedded in the binary (gzip-compressed), so the released
 executable is fully self-contained — no data files to place, runs from anywhere.
 
-Prebuilt binaries — no Rust toolchain needed:
+Prebuilt binaries — no Rust toolchain needed.
+
+macOS / Linux:
 
 ```sh
-# macOS / Linux
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dakom/tanach-experiments/releases/latest/download/calculations-installer.sh | sh
-# Windows (PowerShell)
-powershell -ExecutionPolicy Bypass -c "irm https://github.com/dakom/tanach-experiments/releases/latest/download/calculations-installer.ps1 | iex"
 ```
 
-From source (needs a Rust toolchain):
+Windows (PowerShell):
 
-```sh
-cargo install --git https://github.com/dakom/tanach-experiments calculations
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/dakom/tanach-experiments/releases/latest/download/calculations-installer.ps1 | iex"
 ```
 
 Then run `calculations <command> [options]` from any directory.
