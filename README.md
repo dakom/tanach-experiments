@@ -8,7 +8,7 @@ Live Demo: https://dakom.github.io/tanach-experiments
 
 ## Command-line tool
 
-[`calculations`](utils/calculations) — a gematria search CLI over the Tanach
+[`tanach-calc`](utils/calculations) — a gematria search CLI over the Tanach
 (exact and per-phrase accumulation search, forward or reverse), shipped as a
 single self-contained binary. See its [README](utils/calculations/README.md) for
 install and usage.

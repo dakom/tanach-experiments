@@ -1,4 +1,4 @@
-# calculations
+# tanach-calc
 
 A Rust CLI for gematria calculations over the Tanach. Part of
 [tanach-experiments](https://github.com/dakom/tanach-experiments); it reads the
@@ -18,16 +18,16 @@ Prebuilt binaries — no Rust toolchain needed.
 macOS / Linux:
 
 ```sh
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dakom/tanach-experiments/releases/latest/download/calculations-installer.sh | sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dakom/tanach-experiments/releases/latest/download/tanach-calc-installer.sh | sh
 ```
 
 Windows (PowerShell):
 
 ```powershell
-powershell -ExecutionPolicy Bypass -c "irm https://github.com/dakom/tanach-experiments/releases/latest/download/calculations-installer.ps1 | iex"
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/dakom/tanach-experiments/releases/latest/download/tanach-calc-installer.ps1 | iex"
 ```
 
-Then run `calculations <command> [options]` from any directory.
+Then run `tanach-calc <command> [options]` from any directory.
 
 > Every merge to `master` rebuilds the per-OS binaries and replaces the assets on
 > the rolling [`latest` release](https://github.com/dakom/tanach-experiments/releases/latest),

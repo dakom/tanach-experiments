@@ -1,10 +1,10 @@
-# Installer for the `calculations` gematria CLI (Windows).
+# Installer for the `tanach-calc` gematria CLI (Windows).
 # Downloads the latest prebuilt binary from GitHub Releases and drops it in your
 # Cargo bin dir (override with $env:CALCULATIONS_INSTALL_DIR).
 $ErrorActionPreference = "Stop"
 
 $repo   = "dakom/tanach-experiments"
-$bin    = "calculations"
+$bin    = "tanach-calc"
 $target = "x86_64-pc-windows-msvc"
 $asset  = "$bin-$target.tar.gz"
 $url    = "https://github.com/$repo/releases/latest/download/$asset"

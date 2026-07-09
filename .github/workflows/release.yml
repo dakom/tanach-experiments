@@ -1,6 +1,6 @@
 name: Release
 
-# Rebuild and publish the prebuilt `calculations` binaries on every merge to
+# Rebuild and publish the prebuilt `tanach-calc` binaries on every merge to
 # master. Assets are attached to a rolling `latest` GitHub Release, so
 # https://github.com/dakom/tanach-experiments/releases/latest/download/... always
 # serves the newest build.
@@ -48,9 +48,9 @@ jobs:
         working-directory: utils/calculations
         run: |
           set -eu
-          name="calculations-${{ matrix.target }}"
-          bin="calculations"
-          [ "${{ runner.os }}" = "Windows" ] && bin="calculations.exe"
+          name="tanach-calc-${{ matrix.target }}"
+          bin="tanach-calc"
+          [ "${{ runner.os }}" = "Windows" ] && bin="tanach-calc.exe"
           mkdir "$name"
           cp "target/${{ matrix.target }}/release/$bin" "$name/"
           # Write to a relative path (repo root). An absolute Windows path like
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}
-          path: calculations-${{ matrix.target }}.tar.gz
+          path: tanach-calc-${{ matrix.target }}.tar.gz
           if-no-files-found: error
 
   publish:
@@ -78,8 +78,8 @@ jobs:
           set -eu
           mkdir -p release
           cp artifacts/*.tar.gz release/
-          cp utils/calculations/install.sh  release/calculations-installer.sh
-          cp utils/calculations/install.ps1 release/calculations-installer.ps1
+          cp utils/calculations/install.sh  release/tanach-calc-installer.sh
+          cp utils/calculations/install.ps1 release/tanach-calc-installer.ps1
           (cd release && sha256sum *.tar.gz > SHA256SUMS)
           ls -la release
       - name: Publish rolling 'latest' release
@@ -91,6 +91,6 @@ jobs:
           gh release delete latest --cleanup-tag --yes 2>/dev/null || true
           gh release create latest release/* \
             --title "latest" \
-            --notes "Prebuilt \`calculations\` binaries, rebuilt from ${GITHUB_SHA} on $(date -u +%Y-%m-%dT%H:%M:%SZ)." \
+            --notes "Prebuilt \`tanach-calc\` binaries, rebuilt from ${GITHUB_SHA} on $(date -u +%Y-%m-%dT%H:%M:%SZ)." \
             --latest \
             --target "${GITHUB_SHA}"

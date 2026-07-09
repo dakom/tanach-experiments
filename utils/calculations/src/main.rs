@@ -21,7 +21,7 @@ use tanach::Tanach;
 const DEFAULT_DATA_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../src/media");
 
 #[derive(Parser)]
-#[command(name = "calculations", about = "Gematria calculations over the Tanach")]
+#[command(name = "tanach-calc", about = "Gematria calculations over the Tanach")]
 struct Cli {
     /// Load the dataset from this directory (expects a `tanach/` subdirectory)
     /// instead of the copy embedded in the binary.

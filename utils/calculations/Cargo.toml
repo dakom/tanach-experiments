@@ -3,7 +3,7 @@
 [workspace]
 
 [package]
-name = "calculations"
+name = "tanach-calc"
 version = "0.1.0"
 edition = "2021"
 description = "Gematria calculations over the Tanach dataset"
@@ -12,7 +12,7 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/dakom/tanach-experiments"
 
 [[bin]]
-name = "calculations"
+name = "tanach-calc"
 path = "src/main.rs"
 
 [features]

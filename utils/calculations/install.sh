@@ -1,11 +1,11 @@
 #!/bin/sh
-# Installer for the `calculations` gematria CLI.
+# Installer for the `tanach-calc` gematria CLI.
 # Downloads the latest prebuilt binary for this platform from GitHub Releases
 # and drops it in your Cargo bin dir (override with CALCULATIONS_INSTALL_DIR).
 set -eu
 
 REPO="dakom/tanach-experiments"
-BIN="calculations"
+BIN="tanach-calc"
 
 os="$(uname -s)"
 arch="$(uname -m)"
