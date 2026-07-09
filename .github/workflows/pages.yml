@@ -1,0 +1,55 @@
+name: Pages
+
+# Build the demo site with gulp and deploy it to GitHub Pages on every merge to
+# master. Pages is configured to build from GitHub Actions (not the legacy
+# gh-pages branch), so this workflow is the single source of the live site at
+# https://dakom.github.io/tanach-experiments/.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deploy; let an in-flight run finish rather than cancel it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # The gulp 3 toolchain (gulp@3.9.1) only runs on Node <= 11, so pin the whole
+    # build environment to Node 10 via a container. GitHub mounts its own Node to
+    # run the JS actions below, so they are unaffected by the old container Node.
+    container: node:10-buster
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: npm install --no-audit --no-fund --loglevel=error
+      - name: Build site (gulp dist -> ./dist)
+        run: |
+          set -eu
+          ./node_modules/.bin/gulp dist
+          # `dist` chains its sub-tasks asynchronously; fail loudly if the build
+          # did not actually produce the landing page and a demo page.
+          test -f dist/index.html
+          test -f dist/letters-palette.html
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
