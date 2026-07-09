@@ -1,0 +1,40 @@
+# Standalone crate (the repo has no root Cargo workspace); the empty `[workspace]`
+# table keeps it self-contained.
+[workspace]
+
+[package]
+name = "calculations"
+version = "0.1.0"
+edition = "2021"
+description = "Gematria calculations over the Tanach dataset"
+authors = ["David Komer <david.komer@gmail.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/dakom/tanach-experiments"
+
+[[bin]]
+name = "calculations"
+path = "src/main.rs"
+
+[features]
+# On by default: bundle the dataset into the binary (gzip-compressed, ~1.5 MB) so
+# the tool is a single self-contained, relocatable executable. Disable for dev
+# builds (`--no-default-features`) to load the dataset from `src/media/` on disk
+# instead — faster incremental builds, smaller binary.
+default = ["embed-data"]
+embed-data = ["dep:flate2"]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+# Decompresses the embedded dataset at runtime (only with the `embed-data`
+# feature). Pure-Rust miniz_oxide backend — no C toolchain needed.
+flate2 = { version = "1", optional = true }
+
+[build-dependencies]
+# Gzip-compresses the dataset at build time when embedding (see build.rs).
+flate2 = "1"
+
+[profile.release]
+lto = "thin"
