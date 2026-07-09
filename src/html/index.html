@@ -2,147 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device_width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <title>Tanach Viewer - Demo Pages</title>
-	<style type="text/css">
-			body,html {
-				padding: 0;
-				margin: 0;
-			}
-		#content {
-			font-size: xx-large;
-			width: 90%;
-			margin: 0 auto;
-		}
-		#list {
-			margin-top: 20px;
-			margin-left: 20px;
-
-		}
-	</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tanach Experiments</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --link: #1a5fb4;
+      --border: #e2e2e2;
+      --card: #f7f7f7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16181c;
+        --fg: #e8e8e8;
+        --muted: #9aa0a6;
+        --link: #7fb0ff;
+        --border: #2c2f36;
+        --card: #1e2127;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    header { margin-bottom: 2rem; }
+    h1 { font-size: 2rem; margin: 0 0 .25rem; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.5rem 0 .75rem;
+      padding-bottom: .3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 1.05rem; margin: 1.5rem 0 .4rem; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .byline { color: var(--muted); }
+    .links { list-style: none; padding: 0; margin: 0; }
+    .links li { margin: .6rem 0; }
+    .links .name { font-weight: 600; }
+    .links .desc { color: var(--muted); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+    }
+    .keys { border-collapse: collapse; margin: .5rem 0; }
+    .keys td { padding: .15rem .75rem .15rem 0; vertical-align: top; }
+    .keys td:first-child { font-weight: 600; white-space: nowrap; }
+    .muted { color: var(--muted); }
+    pre {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .85rem 1rem;
+      overflow-x: auto;
+      font-size: .85rem;
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    footer { margin-top: 3rem; color: var(--muted); font-size: .9rem; }
+  </style>
 </head>
 
 <body>
-	<div id="content">
-	<p>Tanach Experiments</a><br/> <span style="font-size: large;">by <a  href="mailto:david.komer@gmail.com">David Komer</a></span>
-  <p/>
-  Live Links:
+<main>
+  <header>
+    <h1>Tanach Experiments</h1>
+    <p class="byline">by <a href="mailto:david.komer@gmail.com">David Komer</a></p>
+  </header>
 
-  <div id="list">
-    <h1><u>Eye Candy</u></h1>
-    <a href="letters-palette.html">Letters Palette </a> - View all the Tanach letters as colors
-    <p/>
-  <a href="word-hilight.html">Word Hilight </a> - Hilight word matches in all of Tanach
-      <p/>
-    <a href="gematria-hilight.html">Gematria Hilight </a> - Hilight gematria matches in all of Tanach
+  <p>Various experiments with Tanach data — most use the GPU for fast parallel
+  processing and a visual representation, plus some sound-based pieces.</p>
 
+  <h2>Eye Candy</h2>
+  <ul class="links">
+    <li><a class="name" href="letters-palette.html">Letters Palette</a>
+        <span class="desc">— view all the Tanach letters as colors</span></li>
+    <li><a class="name" href="word-hilight.html">Word Hilight</a>
+        <span class="desc">— highlight word matches across all of Tanach</span></li>
+    <li><a class="name" href="gematria-hilight.html">Gematria Hilight</a>
+        <span class="desc">— highlight gematria matches across all of Tanach</span></li>
+    <li><a class="name" href="ratio-draw.html">Ratio Draw</a>
+        <span class="desc">— ratio-based colors for words</span></li>
+  </ul>
 
-    <p/>
-    <a href="ratio-draw.html">Ratio Draw </a> - Testing the idea of ratio-based colors for words
+  <h2>Ear Candy</h2>
+  <ul class="links">
+    <li><a class="name" href="sound-buffer.html">Sound Buffer</a>
+        <span class="desc">— fill a sound buffer with raw Tanach data</span></li>
+    <li><a class="name" href="sound-instrument.html">Sound Instrument</a>
+        <span class="desc">— play a musical instrument driven by Tanach data</span></li>
+  </ul>
 
-    <p/>
-    <h1><u>Ear Candy</u></h1>
-    <a href="sound-buffer.html">Sound Buffer</a> - filling a sound buffer with raw Tanach data
+  <h2>Command-line tool</h2>
+  <p><code>calculations</code> is a gematria search CLI over the Tanach: print a
+  verse or letter run, and search the whole text for gematria sequences — exact
+  or accumulated (per-phrase), forward or reverse. It ships as a single
+  self-contained binary with the dataset embedded.</p>
+  <pre><code># macOS (Apple Silicon) / Linux
+curl --proto '=https' --tlsv1.2 -LsSf \
+  https://github.com/dakom/tanach-experiments/releases/latest/download/calculations-installer.sh | sh
 
-    <p/>
-    <a href="sound-instrument.html">Sound Instrument</a> - play a musical instrument by Tanach data
+# or build from source (any platform)
+cargo install --git https://github.com/dakom/tanach-experiments calculations</code></pre>
+  <p class="muted">Source in <a href="https://github.com/dakom/tanach-experiments/tree/master/utils/calculations">utils/calculations</a>.</p>
+
+  <h2>Notes</h2>
+  <p>You must be using a browser with WebGL support (most modern browsers
+  qualify). Where flipping is available, the initial view is flipped horizontally
+  to simulate right-to-left. To adjust resolution or hide scrollbars, resize the
+  window and hit <em>refresh</em>. Source code is
+  <a href="https://github.com/dakom/tanach-experiments">on GitHub</a>.</p>
+
+  <h3>Letters Palette</h3>
+  <div class="card">
+    <table class="keys">
+      <tr><td>Touch</td><td>get the location in Tanach</td></tr>
+      <tr><td>Spacebar</td><td>pause / play animation</td></tr>
+      <tr><td>Up</td><td>isolate next letter</td></tr>
+      <tr><td>Down</td><td>isolate previous letter</td></tr>
+      <tr><td>1</td><td>regular</td></tr>
+      <tr><td>2</td><td>atbash</td></tr>
+      <tr><td>3</td><td>albam</td></tr>
+      <tr><td>F</td><td>flip horizontal</td></tr>
+    </table>
+    <p class="muted">Colors a pixel for <em>every letter in Tanach</em>. You can
+    isolate any letter and substitute all letters by <em>atbash</em> or
+    <em>albam</em>. The palette starts from random assignments and animates at
+    random speeds; pause any time. Sofits are distinct here (after tav come mem,
+    nun, etc. in final form). The current letter is logged to the developer
+    console.</p>
   </div>
-<p/>
-<i>Generic Notes:</i>
-  <p/>You <b>must</b> be using a modern web browser which supports WebGL (most updated versions do - unless you're on internet explorer).
-  <p/>
-  If your want to adjust the resolution or get rid of scrollbars, you should usually resize your window and hit <i>refresh</i>
-  <p/>
-  <p/>Where flipping is available, the initial settings are flipped horizontal, e.g. to simulate right-to-left
-  <p/>Source code is available <a href="https://github.com/dakom/tanach-experiments">here</a>
-  <p/><i>Specific Notes:</i>
-  <p/>
-    <b>Letters Palette</b>
-    <br>
 
-    <div id="list">
-      <b>Keys:</b>
-      <p/>
-      <table border="0">
-        <tr><td>Touch:</td><td>&nbsp;&nbsp;Get the location in Tanach</td></tr>
-      <tr><td>Spacebar:</td><td>&nbsp;&nbsp;Pause/Play animation</td></tr>
-      <tr><td>Up:</td><td>&nbsp;&nbsp;Isolate next letter</td></tr>
-      <tr><td>Down:</td><td>&nbsp;&nbsp;Isolate previous letter</td></tr>
-      <tr><td>1:</td><td>&nbsp;&nbsp;Regular</td></tr>
-      <tr><td>2:</td><td>&nbsp;&nbsp;Atbash</td></tr>
-      <tr><td>3:</td><td>&nbsp;&nbsp;Albam</td></tr>
-      <tr><td>F:</td><td>&nbsp;&nbsp;Flip Horizontal</td></tr>
-      </table>
+  <h3>Word Hilight</h3>
+  <div class="card">
+    <table class="keys">
+      <tr><td>Touch</td><td>get the location in Tanach</td></tr>
+      <tr><td>Buttons</td><td>change colors and speed</td></tr>
+      <tr><td>Edit Value</td><td>manually set the current value</td></tr>
+      <tr><td>F</td><td>flip horizontal</td></tr>
+    </table>
+    <p class="muted">Highlights word matches throughout all of Tanach, cycling
+    from the first to the last word and resuming where it left off when
+    paused/played. Searches per-word (not per-phrase).</p>
+  </div>
 
+  <h3>Gematria Hilight</h3>
+  <div class="card">
+    <table class="keys">
+      <tr><td>Touch</td><td>get the location in Tanach</td></tr>
+      <tr><td>Buttons</td><td>change colors and speed</td></tr>
+      <tr><td>Edit Value</td><td>manually set the current value</td></tr>
+      <tr><td>F</td><td>flip horizontal</td></tr>
+    </table>
+    <p class="muted">Highlights gematria matches throughout all of Tanach, from
+    lowest to highest value. Unlike <em>Letters Palette</em>, sofits are not
+    distinct here (tav = 400 is the highest). Searches per-word (not per-phrase);
+    the <code>calculations</code> CLI above does per-phrase accumulation.</p>
+  </div>
 
-      <p/>
-      <b>Notes:</b>
-      <div id="list">
-        This experiment colors a pixel for <i>every letter in Tanach</i>
-        <p/>You can isolate any particular letter, as well as substitute all the letters according to <i>atbash</i> or <i>albam</i>
-        <p/>The color palette begins with random assignments, and animates with random speeds. You can pause it at any time
-        To adjust the resolution, see above
-        <p/>Soft's are distinct (i.e. after tav is mem sofit, nun sofit, etc.) If you want to see the current chosen letter - look in the developer's console
+  <h3>Ratio Draw</h3>
+  <div class="card">
+    <p class="muted">No controls. Currently set to Sofit-Atbash: the gematria of
+    each letter, transposed in atbash, including the extra value for sofits.</p>
+  </div>
 
-      </div>
-    </div>
-    <div id="list">
-      <b>Word Hilight</b>
-      <div id="list">
-        <b>Keys:</b>
-        <p/>
-        <table border="0">
-          <tr><td>Touch:</td><td>&nbsp;&nbsp;Get the location in Tanach</td></tr>
-          <tr><td>Buttons:</td><td>&nbsp;&nbsp;Change colors and speed</td></tr>
-          <tr><td>Edit Value:</td><td>&nbsp;&nbsp;Manually set current value</td></tr>
-        <tr><td>F:</td><td>&nbsp;&nbsp;Flip Horizontal</td></tr>
-
-      </table>
-      <p/>
-      <b>Notes:</b>
-      <div id="list">
-        This experiment highlights word matches throughout all of Tanach
-        <p/>It cycles from the first to last word in Tanach, and will pick up from where it last left off when paused/played
-        <p/>Note that currently it only searches per-word, not per-phrase
-      </div>
-    </div>
-    <div id="list">
-      <b>Gematria Hilight</b>
-      <div id="list">
-        <b>Keys:</b>
-        <p/>
-        <table border="0">
-          <tr><td>Touch:</td><td>&nbsp;&nbsp;Get the location in Tanach</td></tr>
-          <tr><td>Buttons:</td><td>&nbsp;&nbsp;Change colors and speed</td></tr>
-          <tr><td>Edit Value:</td><td>&nbsp;&nbsp;Manually set current value</td></tr>
-        <tr><td>F:</td><td>&nbsp;&nbsp;Flip Horizontal</td></tr>
-
-      </table>
-      <p/>
-      <b>Notes:</b>
-      <div id="list">
-        This experiment highlights gematria matches throughout all of Tanach, starting from lowest to highest and animating through
-        <p/>Unlike in the <i>Letters Palette</i>, Sofits are not distinct here (tav-400 is the highest)
-        <p/>Note that currently it only searches per-word, not per-phrase
-      </div>
-    </div>
-
-    <b>Ratio Draw</b>
-    <p/>
-    <b>Keys/Controls: None</b>
-    <p/>
-
-    <b>Notes:</b>
-    <div id="list">
-      <p> Currently set to Sofit-Atbash (gematria of each letter, transposed in atbash, and including the extra value for Sofit's)
-    </div>
-
-
-	</div>
-<p/>
-
-
-	</div>
-	</body>
+  <footer>
+    <a href="https://github.com/dakom/tanach-experiments">github.com/dakom/tanach-experiments</a>
+  </footer>
+</main>
+</body>
 </html>
