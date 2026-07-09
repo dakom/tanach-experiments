@@ -86,14 +86,16 @@ enum Command {
         /// `letters`: match anywhere in the flat letter stream.
         #[arg(long, value_enum)]
         mode: SearchMode,
-        /// Accumulation search: treat each --sequence value as a running-sum
-        /// target rather than a single letter. A span (letters mode) or run of
-        /// whole words (verse mode) that sums to the value is a match; multiple
-        /// values match consecutive adjacent runs. E.g. "913" finds spans summing
-        /// to 913 (like the word bereishit); "913,203" finds a span summing to 913
-        /// immediately followed by one summing to 203.
+        /// Turn off accumulation. By default the search accumulates: each
+        /// --sequence value is a running-sum target rather than a single letter.
+        /// A span (letters mode) or run of whole words (verse mode) that sums to
+        /// the value is a match; multiple values match consecutive adjacent runs.
+        /// E.g. "913" finds spans summing to 913 (like the word bereishit);
+        /// "913,203" finds a span summing to 913 immediately followed by one
+        /// summing to 203. Pass --no-accumulate to instead match each value
+        /// against a single letter exactly.
         #[arg(long)]
-        accumulate: bool,
+        no_accumulate: bool,
         /// Search reading in reverse from the last letter of the Tanach.
         #[arg(long)]
         reverse: bool,
@@ -134,13 +136,20 @@ fn main() -> Result<()> {
         Command::SearchGematria {
             sequence,
             mode,
-            accumulate,
+            no_accumulate,
             reverse,
             limit,
             start,
             output,
         } => commands::search_gematria(
-            &tanach, &sequence, mode, accumulate, reverse, limit, start, &output,
+            &tanach,
+            &sequence,
+            mode,
+            !no_accumulate,
+            reverse,
+            limit,
+            start,
+            &output,
         )?,
     }
 

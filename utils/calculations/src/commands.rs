@@ -167,13 +167,14 @@ pub fn print_gematria_sequence<S: DataSource>(
     output.emit(&report)
 }
 
-/// `search-gematria --sequence "2,30,5,10,12" --mode verse|letters [--accumulate]`
+/// `search-gematria --sequence "913,203" --mode verse|letters [--no-accumulate]`
 /// `[--reverse] [--limit N] [--start P]`
 ///
 /// Counts and locates every occurrence of a gematria sequence across the whole
-/// Tanach. In exact mode each value must match a single letter; with
-/// `accumulate`, each value is a running-sum target matched by a span of letters
-/// (letters mode) or whole words (verse mode). With `reverse`, matching reads
+/// Tanach. By default `accumulate` is on: each value is a running-sum target
+/// matched by a span of letters (letters mode) or whole words (verse mode). In
+/// exact mode (`--no-accumulate`) each value must match a single letter. With
+/// `reverse`, matching reads
 /// from the last letter of the Tanach toward the first. `limit`/`start` page the
 /// detailed hit list (the total `count` and per-book breakdown always stay
 /// complete). `start` is the 1-based index of the first hit to return. See
