@@ -134,12 +134,12 @@ matches per book:
   yirmiyahu (book 13): 4
   hosea (book 15): 1
 hits:
-  bereishit (book 1) 1:1 word 1 [pos 1]
-  yirmiyahu (book 13) 26:1 word 1 [pos 679211]
-  yirmiyahu (book 13) 27:1 word 1 [pos 680933]
-  yirmiyahu (book 13) 28:1 word 4 [pos 682560]
-  yirmiyahu (book 13) 49:34 word 10 [pos 718568]
-  hosea (book 15) 9:10 word 7 [pos 807715]
+  book 1 chapter 1 verse 1 word 1 [pos 1]
+  book 13 chapter 26 verse 1 word 1 [pos 679211]
+  book 13 chapter 27 verse 1 word 1 [pos 680933]
+  book 13 chapter 28 verse 1 word 4 [pos 682560]
+  book 13 chapter 49 verse 34 word 10 [pos 718568]
+  book 15 chapter 9 verse 10 word 7 [pos 807715]
 ```
 
 The report has three parts: the total `matches`, a `matches per book` breakdown
@@ -181,8 +181,8 @@ matches: 935
 matches per book:
   ... (complete, all 39 books)
 hits:
-  bereishit (book 1) 1:1 word 1 [pos 1] (len 6, ends at pos 6)
-  bereishit (book 1) 1:29 word 5 [pos 1487] (len 10, ends at pos 1496)
+  book 1 chapter 1 verse 1 word 1 [pos 1] (len 6, ends at pos 6)
+  book 1 chapter 1 verse 29 word 5 [pos 1487] (len 10, ends at pos 1496)
   ...
 ```
 

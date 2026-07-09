@@ -223,14 +223,14 @@ pub struct SearchHit {
 
 impl SearchHit {
     fn location_line(&self) -> String {
-        let base = format!(
-            "{} (book {}) {}:{} word {}",
-            self.book_name, self.book, self.chapter, self.verse, self.word
+        let mut line = format!(
+            "book {} chapter {} verse {} word {}",
+            self.book, self.chapter, self.verse, self.word
         );
-        let mut line = match self.letter {
-            Some(l) => format!("{base} letter {l} [pos {}]", self.flat_position),
-            None => format!("{base} [pos {}]", self.flat_position),
-        };
+        if let Some(l) = self.letter {
+            line.push_str(&format!(" letter {l}"));
+        }
+        line.push_str(&format!(" [pos {}]", self.flat_position));
         if let (Some(length), Some(end)) = (self.length, self.end_position) {
             line.push_str(&format!(" (len {length}, ends at pos {end})"));
         }
